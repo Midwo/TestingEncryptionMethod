@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.26430.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestingEncryptionMethod", "TestingEncryptionMethod\TestingEncryptionMethod.csproj", "{819A4C93-14CA-40BC-87B6-1A9130F6CEE9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WCFTestEncryptionMethod", "WCFTestEncryptionMethod\WCFTestEncryptionMethod.csproj", "{E766A505-6A1E-49ED-861B-D5677C24883C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{819A4C93-14CA-40BC-87B6-1A9130F6CEE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{819A4C93-14CA-40BC-87B6-1A9130F6CEE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{819A4C93-14CA-40BC-87B6-1A9130F6CEE9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E766A505-6A1E-49ED-861B-D5677C24883C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E766A505-6A1E-49ED-861B-D5677C24883C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E766A505-6A1E-49ED-861B-D5677C24883C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E766A505-6A1E-49ED-861B-D5677C24883C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

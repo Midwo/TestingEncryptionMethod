@@ -34,20 +34,24 @@
             this.label2 = new System.Windows.Forms.Label();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cBinput = new System.Windows.Forms.ComboBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.bOpen = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tBInput = new System.Windows.Forms.TextBox();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.lStatusInfo = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.bRun = new System.Windows.Forms.Button();
+            this.bReset = new System.Windows.Forms.Button();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
+            this.tableLayoutPanel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -61,8 +65,7 @@
             this.tableLayoutPanel1.Controls.Add(this.comboBox2, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.label3, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 0, 5);
-            this.tableLayoutPanel1.Controls.Add(this.button1, 0, 6);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel4, 0, 6);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 7;
@@ -110,7 +113,7 @@
             this.tableLayoutPanel2.ColumnCount = 1;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.Controls.Add(this.label1, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.comboBox1, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.cBinput, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.flowLayoutPanel1, 0, 2);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
@@ -134,23 +137,24 @@
             this.label1.Text = "Select input:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // comboBox1
+            // cBinput
             // 
-            this.comboBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.cBinput.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cBinput.FormattingEnabled = true;
+            this.cBinput.Items.AddRange(new object[] {
             "String 20 char",
             "JPG. size 0.1 MB < 0.7 MB",
             "JPG. size 1MB < x MB"});
-            this.comboBox1.Location = new System.Drawing.Point(3, 30);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(512, 21);
-            this.comboBox1.TabIndex = 3;
+            this.cBinput.Location = new System.Drawing.Point(3, 30);
+            this.cBinput.Name = "cBinput";
+            this.cBinput.Size = new System.Drawing.Size(512, 21);
+            this.cBinput.TabIndex = 3;
+            this.cBinput.SelectedIndexChanged += new System.EventHandler(this.cBinput_SelectedIndexChanged);
             // 
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.Controls.Add(this.bOpen);
-            this.flowLayoutPanel1.Controls.Add(this.textBox1);
+            this.flowLayoutPanel1.Controls.Add(this.tBInput);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 65);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
@@ -159,23 +163,26 @@
             // 
             // bOpen
             // 
+            this.bOpen.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.bOpen.Enabled = false;
             this.bOpen.Location = new System.Drawing.Point(3, 3);
             this.bOpen.Name = "bOpen";
             this.bOpen.Size = new System.Drawing.Size(99, 47);
             this.bOpen.TabIndex = 0;
             this.bOpen.Text = "Open";
-            this.bOpen.UseVisualStyleBackColor = true;
+            this.bOpen.UseVisualStyleBackColor = false;
+            this.bOpen.Click += new System.EventHandler(this.bOpen_Click);
             // 
-            // textBox1
+            // tBInput
             // 
-            this.textBox1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.textBox1.Enabled = false;
-            this.textBox1.Location = new System.Drawing.Point(108, 3);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(398, 47);
-            this.textBox1.TabIndex = 1;
+            this.tBInput.Dock = System.Windows.Forms.DockStyle.Right;
+            this.tBInput.Enabled = false;
+            this.tBInput.Location = new System.Drawing.Point(108, 3);
+            this.tBInput.MaxLength = 20;
+            this.tBInput.Multiline = true;
+            this.tBInput.Name = "tBInput";
+            this.tBInput.Size = new System.Drawing.Size(398, 47);
+            this.tBInput.TabIndex = 1;
             // 
             // comboBox2
             // 
@@ -222,6 +229,7 @@
             // lStatusInfo
             // 
             this.lStatusInfo.AutoSize = true;
+            this.lStatusInfo.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.lStatusInfo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lStatusInfo.Location = new System.Drawing.Point(3, 26);
             this.lStatusInfo.Name = "lStatusInfo";
@@ -229,7 +237,6 @@
             this.lStatusInfo.TabIndex = 1;
             this.lStatusInfo.Text = "StatusInfo";
             this.lStatusInfo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lStatusInfo.Visible = false;
             // 
             // label4
             // 
@@ -242,16 +249,51 @@
             this.label4.Text = "Status";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // button1
+            // tableLayoutPanel4
             // 
-            this.button1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button1.Location = new System.Drawing.Point(3, 308);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(518, 29);
-            this.button1.TabIndex = 8;
-            this.button1.Text = "Run";
-            this.button1.UseVisualStyleBackColor = false;
+            this.tableLayoutPanel4.ColumnCount = 2;
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.Controls.Add(this.bRun, 0, 0);
+            this.tableLayoutPanel4.Controls.Add(this.bReset, 1, 0);
+            this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 308);
+            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
+            this.tableLayoutPanel4.RowCount = 1;
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(518, 29);
+            this.tableLayoutPanel4.TabIndex = 8;
+            // 
+            // bRun
+            // 
+            this.bRun.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.bRun.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.bRun.Location = new System.Drawing.Point(3, 3);
+            this.bRun.Name = "bRun";
+            this.bRun.Size = new System.Drawing.Size(253, 23);
+            this.bRun.TabIndex = 0;
+            this.bRun.Text = "Run";
+            this.bRun.UseVisualStyleBackColor = false;
+            this.bRun.Click += new System.EventHandler(this.button1_Click_1);
+            // 
+            // bReset
+            // 
+            this.bReset.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.bReset.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.bReset.Enabled = false;
+            this.bReset.Location = new System.Drawing.Point(262, 3);
+            this.bReset.Name = "bReset";
+            this.bReset.Size = new System.Drawing.Size(253, 23);
+            this.bReset.TabIndex = 1;
+            this.bReset.Text = "Reset";
+            this.bReset.UseVisualStyleBackColor = false;
+            this.bReset.Click += new System.EventHandler(this.bReset_Click);
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            this.openFileDialog1.Filter = "JPG files (*.txt)|*.JPG";
+            this.openFileDialog1.FilterIndex = 2;
             // 
             // Form1
             // 
@@ -271,6 +313,7 @@
             this.flowLayoutPanel1.PerformLayout();
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
+            this.tableLayoutPanel4.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -281,10 +324,10 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cBinput;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Button bOpen;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox tBInput;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.Label label3;
@@ -292,7 +335,10 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.Label lStatusInfo;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
+        private System.Windows.Forms.Button bRun;
+        private System.Windows.Forms.Button bReset;
     }
 }
 
