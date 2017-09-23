@@ -12,6 +12,8 @@ namespace WCFTestEncryptionMethod
     [ServiceContract]
     public interface IService1
     {
+        [OperationContract]
+        string WindowsFormConnect(Variables windowsForm);
 
         [OperationContract]
         string GetData(int value);
@@ -24,6 +26,51 @@ namespace WCFTestEncryptionMethod
 
 
     // Use a data contract as illustrated in the sample below to add composite types to service operations.
+    [DataContract]
+    public class Variables
+    {
+        string encrypt;
+        string startWinForms;
+        string stopWinforms;
+        int numberMethodWCF;
+        int numberMethodMsSQL;
+
+        [DataMember]
+        public int NumberMethodWCF
+        {
+            get { return numberMethodWCF; }
+            set { numberMethodWCF = value; }
+        }
+        [DataMember]
+        public int NumberMethodMsSQL
+        {
+            get { return numberMethodMsSQL; }
+            set { numberMethodMsSQL = value; }
+        }
+
+
+        [DataMember]
+        public string Encrypt
+        {
+            get { return encrypt; }
+            set { encrypt = value; }
+        }
+        [DataMember]
+        public string StartWinForms
+        {
+            get { return startWinForms; }
+            set { startWinForms = value; }
+        }
+        [DataMember]
+        public string StopWinforms
+        {
+            get { return stopWinforms; }
+            set { stopWinforms = value; }
+        }
+    }
+
+
+
     [DataContract]
     public class CompositeType
     {

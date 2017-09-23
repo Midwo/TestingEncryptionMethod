@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TestingEncryptionMethod.Properties {
+namespace WCFTestEncryptionMethod.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
@@ -27,9 +27,9 @@ namespace TestingEncryptionMethod.Properties {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
         [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-ADTR5K0;Initial Catalog=BazaTestowa;Integrated Security=True")]
-        public string con {
+        public string conMsSQL {
             get {
-                return ((string)(this["con"]));
+                return ((string)(this["conMsSQL"]));
             }
         }
     }
