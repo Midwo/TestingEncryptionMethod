@@ -41,7 +41,8 @@ namespace WCFTestEncryptionMethod
                 #endregion
               
 
-                string nameMethodApi = "";
+                string nameMethodWcf = "";
+                string nameMethodWinForms= "";
                 string nameMethodMsSQL = "";
                 string codeHashCommand = "";
                 string sizeInput = "";
@@ -49,32 +50,32 @@ namespace WCFTestEncryptionMethod
                 switch (windowsForm.NumberMethodWCF)
                 {
                     case 0:
-                        nameMethodApi = "Clear group";
+                        nameMethodWcf = "Clear group";
                         break;
                     case 1:
-                        nameMethodApi = "MD5";
+                        nameMethodWcf = "MD5";
                         break;
                     case 2:
-                        nameMethodApi = "RSA";
+                        nameMethodWcf = "RSA";
                         break;
                     case 3:
-                        nameMethodApi = "AES";
+                        nameMethodWcf = "AES";
                         break;
                     case 4:
-                        nameMethodApi = "DES";
+                        nameMethodWcf = "DES";
                         break;
                     case 5:
-                        nameMethodApi = "Triple DES";
+                        nameMethodWcf = "Triple DES";
                         break;
                     case 6:
-                        nameMethodApi = "RC4";
+                        nameMethodWcf = "RC4";
                         break;
                 }
                 switch (windowsForm.NumberMethodMsSQL)
                 {
                     case 0:
                         nameMethodMsSQL = "Clear group";
-                        codeHashCommand = windowsForm.Encrypt;
+                        codeHashCommand = "'"+windowsForm.Encrypt+"'";
                         break;
                     case 1:
                         nameMethodMsSQL = "MD4";
@@ -114,6 +115,30 @@ namespace WCFTestEncryptionMethod
                         break;
 
                 }
+                switch (windowsForm.NumberMethodWinForms)
+                {
+                    case 0:
+                        nameMethodWinForms = "Clear group";
+                        break;
+                    case 1:
+                        nameMethodWinForms = "MD5";
+                        break;
+                    case 2:
+                        nameMethodWinForms = "RSA";
+                        break;
+                    case 3:
+                        nameMethodWinForms = "AES";
+                        break;
+                    case 4:
+                        nameMethodWinForms = "DES";
+                        break;
+                    case 5:
+                        nameMethodWinForms = "Triple DES";
+                        break;
+                    case 6:
+                        nameMethodWinForms = "RC4";
+                        break;
+                }
 
                 ConMsSQL conMsSQL = new ConMsSQL();
 
@@ -127,11 +152,13 @@ namespace WCFTestEncryptionMethod
                     ,[WinStop]
                     ,[WcfStart]
                     ,[WcfStop]
-                    ,[NameAplicationMethod]
+                    ,[NameMethodWcf]
                     ,[NameBaseMethod]
                     ,[ContentCrypt]
-                    ,[Size])
-                     Values('"+windowsForm.StartWinForms+"', '"+windowsForm.StopWinforms+"', '"+ runWcf+"', '"+ stopWcf + "', '"+ nameMethodApi + "', '"+nameMethodMsSQL+"', "+codeHashCommand+",'" +sizeInput+"')";
+                    ,[Size]
+                    ,[BaseStop]
+                    ,[NameMethodWinForms])
+                     Values('" + windowsForm.StartWinForms+"', '"+windowsForm.StopWinforms+"', '"+ runWcf+"', '"+ stopWcf + "', '"+ nameMethodWcf + "', '"+nameMethodMsSQL+"', "+codeHashCommand+",'" +sizeInput+"', GETDATE(), '"+nameMethodWinForms+"')";
 
 
                  conMsSQL.sqlcommand(requestInstertInTable);

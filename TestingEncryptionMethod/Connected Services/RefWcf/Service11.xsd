@@ -5,17 +5,11 @@
       <xs:element minOccurs="0" name="Encrypt" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="NumberMethodMsSQL" type="xs:int" />
       <xs:element minOccurs="0" name="NumberMethodWCF" type="xs:int" />
+      <xs:element minOccurs="0" name="NumberMethodWinForms" type="xs:int" />
       <xs:element minOccurs="0" name="Size" type="xs:int" />
       <xs:element minOccurs="0" name="StartWinForms" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="StopWinforms" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Variables" nillable="true" type="tns:Variables" />
-  <xs:complexType name="CompositeType">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="BoolValue" type="xs:boolean" />
-      <xs:element minOccurs="0" name="StringValue" nillable="true" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="CompositeType" nillable="true" type="tns:CompositeType" />
 </xs:schema>

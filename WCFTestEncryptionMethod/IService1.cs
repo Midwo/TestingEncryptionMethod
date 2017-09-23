@@ -30,7 +30,15 @@ namespace WCFTestEncryptionMethod
         string stopWinforms;
         int numberMethodWCF;
         int numberMethodMsSQL;
+        int numberMethodWinForms;
         int size;
+
+        [DataMember]
+        public int NumberMethodWinForms
+        {
+            get { return numberMethodWinForms; }
+            set { numberMethodWinForms = value; }
+        }
 
         [DataMember]
         public int Size

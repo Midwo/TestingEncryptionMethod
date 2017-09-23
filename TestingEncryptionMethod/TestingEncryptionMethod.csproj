@@ -57,6 +57,7 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Method.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
@@ -80,9 +81,6 @@
     </None>
     <None Include="Connected Services\RefWcf\Service12.xsd">
       <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\RefWcf\TestingEncryptionMethod.RefWcf.CompositeType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
