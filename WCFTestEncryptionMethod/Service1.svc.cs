@@ -13,7 +13,7 @@ namespace WCFTestEncryptionMethod
 
         public string WindowsFormConnect(Variables windowsForm)
         {
-            string runWCF = DateTime.Now.ToString("HH.mm.ss.ffffff");
+            string runWcf = DateTime.Now.ToString("HH.mm.ss.ffffff");
             //method encrypt
             try
             {
@@ -39,10 +39,12 @@ namespace WCFTestEncryptionMethod
 
 
                 #endregion
-                string runWcf = DateTime.Now.ToString("HH.mm.ss.ffffff");
+              
 
                 string nameMethodApi = "";
                 string nameMethodMsSQL = "";
+                string codeHashCommand = "";
+                string sizeInput = "";
 
                 switch (windowsForm.NumberMethodWCF)
                 {
@@ -72,33 +74,53 @@ namespace WCFTestEncryptionMethod
                 {
                     case 0:
                         nameMethodMsSQL = "Clear group";
+                        codeHashCommand = windowsForm.Encrypt;
                         break;
                     case 1:
                         nameMethodMsSQL = "MD4";
+                        codeHashCommand = "HASHBYTES('MD4', '"+windowsForm.Encrypt+"')";
                         break;
                     case 2:
                         nameMethodMsSQL = "MD5";
+                        codeHashCommand = "HASHBYTES('MD5', '" + windowsForm.Encrypt + "')";
                         break;
                     case 3:
                         nameMethodMsSQL = "SHA";
+                        codeHashCommand = "HASHBYTES('SHA', '" + windowsForm.Encrypt + "')";
                         break;
                     case 4:
                         nameMethodMsSQL = "SHA1";
+                        codeHashCommand = "HASHBYTES('SHA1', '" + windowsForm.Encrypt + "')";
                         break;
                     case 5:
                         nameMethodMsSQL = "SHA2_256";
+                        codeHashCommand = "HASHBYTES('SHA2_256', '" + windowsForm.Encrypt + "')";
                         break;
                     case 6:
                         nameMethodMsSQL = "SHA2_512";
+                        codeHashCommand = "HASHBYTES('SHA2_512', '" + windowsForm.Encrypt + "')";
                         break;
+                }
+                switch (windowsForm.Size)
+                {
+                    case 0:
+                        sizeInput = "String 20 char";
+                        break;
+                    case 1:
+                        sizeInput = "JPG.size 0.1 MB < 0.7 MB";
+                        break;
+                    case 2:
+                        sizeInput = "JPG.size 1MB < x MB";
+                        break;
+
                 }
 
                 ConMsSQL conMsSQL = new ConMsSQL();
 
-
-
                 //method encrypt
-                string stopWcf = DateTime.Now.ToString("HH.mm.ss.ffffff");
+
+
+                string stopWcf = DateTime.Now.ToString("yyyy-MM-dd  HH:mm:ss.ffffff");
                 string requestInstertInTable =
                     @"Insert into[BazaTestowa].[dbo].[TestMethodAlgorithms]
                     ([WinStart]
@@ -107,8 +129,9 @@ namespace WCFTestEncryptionMethod
                     ,[WcfStop]
                     ,[NameAplicationMethod]
                     ,[NameBaseMethod]
-                    ,[ContentCrypt])
-                     Values('"+windowsForm.StartWinForms+"', '"+windowsForm.StopWinforms+"', '"+ runWcf+"', '"+ stopWcf + "', '"+ nameMethodApi + "', '"+nameMethodMsSQL+"', '"+windowsForm.Encrypt+"')";
+                    ,[ContentCrypt]
+                    ,[Size])
+                     Values('"+windowsForm.StartWinForms+"', '"+windowsForm.StopWinforms+"', '"+ runWcf+"', '"+ stopWcf + "', '"+ nameMethodApi + "', '"+nameMethodMsSQL+"', "+codeHashCommand+",'" +sizeInput+"')";
 
 
                  conMsSQL.sqlcommand(requestInstertInTable);
@@ -118,29 +141,11 @@ namespace WCFTestEncryptionMethod
             {
                 return string.Format("Can't connect to Ms SQL");
             }
-            string stopWCF = DateTime.Now.ToString("HH.mm.ss.ffffff");
+      
 
             return string.Format("You send {0}, oraz {1} oraz {2} opcja algorytmu WCF {3} opcja bazy {4}", windowsForm.Encrypt, windowsForm.StartWinForms, windowsForm.StopWinforms, windowsForm.NumberMethodWCF, windowsForm.NumberMethodMsSQL);
 
         }
 
-        public string GetData(int value)
-        {
-            return string.Format("You entered: {0}", value);
-        }
-
-        public CompositeType GetDataUsingDataContract(CompositeType composite)
-        {
-            
-            if (composite == null)
-            {
-                throw new ArgumentNullException("composite");
-            }
-            if (composite.BoolValue)
-            {
-                composite.StringValue += "Suffix";
-            }
-            return composite;
-        }
     }
 }

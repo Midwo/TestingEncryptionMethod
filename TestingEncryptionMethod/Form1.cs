@@ -62,18 +62,41 @@ namespace TestingEncryptionMethod
             else
             {
                 // correct option
+
                 bReset.Enabled = true;
                 string runWinForm = DateTime.Now.ToString("HH.mm.ss.ffffff");
-                //method encrypt
-                string stopWinForm = DateTime.Now.ToString("HH.mm.ss.ffffff");
+
+                RefWcf.Service1Client client = new RefWcf.Service1Client();
+
+                RefWcf.Variables variables = new RefWcf.Variables();
+               
+                // method encrypt
+
+                variables.Encrypt = tBInput.Text;
+                variables.StartWinForms = runWinForm;
+                variables.NumberMethodMsSQL = comboBox3.SelectedIndex;
+                variables.NumberMethodWCF = comboBox2.SelectedIndex;
+                variables.Size = cBinput.SelectedIndex;
 
                 //Show time and sting encrypt
-               // MessageBox.Show("czas start " + runWinForm + " a czas stop " + stopWinForm + "", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                // MessageBox.Show("czas start " + runWinForm + " a czas stop " + stopWinForm + "", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                string stopWinForm = DateTime.Now.ToString("HH.mm.ss.ffffff");
+                variables.StopWinforms = stopWinForm;
 
-
+                string returnString;
+                returnString = client.WindowsFormConnect(variables);
+                MessageBox.Show("" + returnString + "");
             }
 
             lStatusInfo.Visible = true;
+
+       
+
+
+
+
+
+
         }
 
         private void bReset_Click(object sender, EventArgs e)

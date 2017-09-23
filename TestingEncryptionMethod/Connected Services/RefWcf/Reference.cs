@@ -32,6 +32,9 @@ namespace TestingEncryptionMethod.RefWcf {
         private int NumberMethodWCFField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int SizeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string StartWinFormsField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -82,6 +85,19 @@ namespace TestingEncryptionMethod.RefWcf {
                 if ((this.NumberMethodWCFField.Equals(value) != true)) {
                     this.NumberMethodWCFField = value;
                     this.RaisePropertyChanged("NumberMethodWCF");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Size {
+            get {
+                return this.SizeField;
+            }
+            set {
+                if ((this.SizeField.Equals(value) != true)) {
+                    this.SizeField = value;
+                    this.RaisePropertyChanged("Size");
                 }
             }
         }

@@ -15,11 +15,7 @@ namespace WCFTestEncryptionMethod
         [OperationContract]
         string WindowsFormConnect(Variables windowsForm);
 
-        [OperationContract]
-        string GetData(int value);
 
-        [OperationContract]
-        CompositeType GetDataUsingDataContract(CompositeType composite);
 
         // TODO: Add your service operations here
     }
@@ -34,6 +30,14 @@ namespace WCFTestEncryptionMethod
         string stopWinforms;
         int numberMethodWCF;
         int numberMethodMsSQL;
+        int size;
+
+        [DataMember]
+        public int Size
+        {
+            get { return size; }
+            set { size = value; }
+        }
 
         [DataMember]
         public int NumberMethodWCF
@@ -71,24 +75,5 @@ namespace WCFTestEncryptionMethod
 
 
 
-    [DataContract]
-    public class CompositeType
-    {
-        bool boolValue = true;
-        string stringValue = "Hello ";
 
-        [DataMember]
-        public bool BoolValue
-        {
-            get { return boolValue; }
-            set { boolValue = value; }
-        }
-
-        [DataMember]
-        public string StringValue
-        {
-            get { return stringValue; }
-            set { stringValue = value; }
-        }
-    }
 }
