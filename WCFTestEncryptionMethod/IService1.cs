@@ -32,6 +32,14 @@ namespace WCFTestEncryptionMethod
         int numberMethodMsSQL;
         int numberMethodWinForms;
         int size;
+        string rsaPublicKey;
+
+        [DataMember]
+        public string RsaPublicKey
+        {
+            get { return rsaPublicKey; }
+            set { rsaPublicKey = value; }
+        }  
 
         [DataMember]
         public int NumberMethodWinForms

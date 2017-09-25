@@ -85,6 +85,9 @@ namespace TestingEncryptionMethod
                         break;
                     case 2:
                         encryptString = methodEncrypt.GetRsa(tBInput.Text);
+                        variables.RsaPublicKey = methodEncrypt.RsaKeyPublic;
+                        //you can see this public key.
+                        //MessageBox.Show("" + variables.RsaPublicKey + "");
                         #region information with rsa to database
                         // you can't save it in database, because this string have specjal char - escape
                         // you can use in database: 
@@ -118,7 +121,7 @@ namespace TestingEncryptionMethod
                         encryptString = methodEncrypt.GetMd5Hash(tBInput.Text);
                         break;
                 }
-                MessageBox.Show("" + encryptString + "");
+               // MessageBox.Show("" + encryptString + "");
                 variables.Encrypt = encryptString;
                 variables.StartWinForms = runWinForm;
                 variables.NumberMethodMsSQL = comboBox3.SelectedIndex;

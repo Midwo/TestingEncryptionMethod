@@ -6,6 +6,7 @@
       <xs:element minOccurs="0" name="NumberMethodMsSQL" type="xs:int" />
       <xs:element minOccurs="0" name="NumberMethodWCF" type="xs:int" />
       <xs:element minOccurs="0" name="NumberMethodWinForms" type="xs:int" />
+      <xs:element minOccurs="0" name="RsaPublicKey" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Size" type="xs:int" />
       <xs:element minOccurs="0" name="StartWinForms" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="StopWinforms" nillable="true" type="xs:string" />
