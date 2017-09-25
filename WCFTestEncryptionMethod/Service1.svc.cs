@@ -115,7 +115,6 @@ namespace WCFTestEncryptionMethod
                         break;
 
                 }
-                
                 switch (windowsForm.NumberMethodWinForms)
                 {
                     case 0:
@@ -126,8 +125,6 @@ namespace WCFTestEncryptionMethod
                         break;
                     case 2:
                         nameMethodWinForms = "RSA";
-                        //you can use this public key
-                        string RsaKeyPublic = windowsForm.RsaPublicKey;
                         break;
                     case 3:
                         nameMethodWinForms = "AES";

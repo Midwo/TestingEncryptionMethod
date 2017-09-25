@@ -35,9 +35,6 @@ namespace TestingEncryptionMethod.RefWcf {
         private int NumberMethodWinFormsField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string RsaPublicKeyField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int SizeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -104,19 +101,6 @@ namespace TestingEncryptionMethod.RefWcf {
                 if ((this.NumberMethodWinFormsField.Equals(value) != true)) {
                     this.NumberMethodWinFormsField = value;
                     this.RaisePropertyChanged("NumberMethodWinForms");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string RsaPublicKey {
-            get {
-                return this.RsaPublicKeyField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.RsaPublicKeyField, value) != true)) {
-                    this.RsaPublicKeyField = value;
-                    this.RaisePropertyChanged("RsaPublicKey");
                 }
             }
         }

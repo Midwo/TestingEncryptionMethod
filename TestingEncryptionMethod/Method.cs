@@ -8,13 +8,8 @@ using System.Windows.Forms;
 
 namespace TestingEncryptionMethod
 {
-
-
     class Method
     {
-
-
-        public string RsaKeyPublic;
 
 
         public string GetRsa(string content)
@@ -39,31 +34,15 @@ namespace TestingEncryptionMethod
                     //(using RSACryptoServiceProvider.ExportParameters(false),
                     //and a boolean flag specifying no OAEP padding.
                     encryptedData = RSAEncrypt(dataToEncrypt, RSA.ExportParameters(false), false);
-                    var pubKey = RSA.ExportParameters(false);
-                    var privKey = RSA.ExportParameters(false);
+
                     //Pass the data to DECRYPT, the private key information 
                     //(using RSACryptoServiceProvider.ExportParameters(true),
                     //and a boolean flag specifying no OAEP padding.
                     //decryptedData = RSADecrypt(encryptedData, RSA.ExportParameters(true), false);
-                      //we need some buffer
-                        var sw = new System.IO.StringWriter();
-                        //we need a serializer
-                        var xs = new System.Xml.Serialization.XmlSerializer(typeof(RSAParameters));
-                        //serialize the key into the stream
-                        xs.Serialize(sw, pubKey);
-                    //get the string from the stream
-                    RsaKeyPublic = sw.ToString();
-                       //MessageBox.Show("" + RsaKeyPublic + "");
-                       
-                    
-
-
-
-                 //   MessageBox.Show("" + RSA.ExportParameters(false).ToString() + "");
-                  //  MessageBox.Show("" + RSA.ExportParameters(true).ToString() + "");
+                   
                     //Display the decrypted plaintext
 
-                    // MessageBox.Show("" + ByteConverter.GetString(decryptedData) + "");
+                 // MessageBox.Show("" + ByteConverter.GetString(decryptedData) + "");
                     result = System.Text.Encoding.UTF8.GetString(encryptedData);
                     
 
