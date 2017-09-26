@@ -98,12 +98,13 @@ namespace TestingEncryptionMethod
                         //, '[', '\[')
 
                         //or you can use:
-                        encryptString = encryptString.Replace("\n", "\\");
-                        encryptString = encryptString.Replace("%", "\n%");
-                        encryptString = encryptString.Replace("_", "\n_");
-                        encryptString = encryptString.Replace("[", "\n[");
+                        //encryptString = encryptString.Replace("\n", "\\");
+                        //encryptString = encryptString.Replace("%", "\n%");
+                        //encryptString = encryptString.Replace("_", "\n_");
+                        //encryptString = encryptString.Replace("[", "\n[");
                         #endregion
-                        //encryptString = "RSA";
+                        // i send string "Rsa" because he have special output char 
+                        encryptString = "RSA";
                         break;
                     case 3:
                         encryptString = methodEncrypt.GetMd5Hash(tBInput.Text);
@@ -143,9 +144,10 @@ namespace TestingEncryptionMethod
                 }
 
                 returnString = client.WindowsFormConnect(variables);
+                lStatusInfo.Text = "Send your message without error";
 
 
-              
+
             }
 
             lStatusInfo.Visible = true;
