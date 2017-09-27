@@ -32,6 +32,16 @@ namespace WCFTestEncryptionMethod
         int numberMethodMsSQL;
         int numberMethodWinForms;
         int size;
+        byte[] encryptByte;
+       
+
+        [DataMember]
+        public byte [] EncryptByte
+        {
+            get { return encryptByte; }
+            set { encryptByte = value; }
+        }
+
 
         [DataMember]
         public int NumberMethodWinForms

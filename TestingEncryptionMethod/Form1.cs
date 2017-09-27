@@ -53,7 +53,7 @@ namespace TestingEncryptionMethod
             //5 SHA2_256
             //6 SHA2_512
             //lStatusInfo.Text = comboBox3.SelectedIndex.ToString();
-#endregion
+            #endregion
 
             if (cBAlgorithmWCF.SelectedIndex == -1 || comboBox3.SelectedIndex == -1 || cBinput.SelectedIndex == -1 || cBAlgorithmWCF.SelectedIndex == -1)
             {
@@ -84,27 +84,8 @@ namespace TestingEncryptionMethod
                         encryptString = methodEncrypt.GetMd5Hash(tBInput.Text);
                         break;
                     case 2:
-                        encryptString = methodEncrypt.GetRsa(tBInput.Text);
-                        #region information with rsa to database
-                        // you can't save it in database, because this string have specjal char - escape
-                        // you can use in database: 
-                        //        set @myString = replace(
-                        //replace(
-                        //replace(
-                        //replace(@myString
-                        //, '\', '\\' )
-                        //, '%', '\%')
-                        //, '_', '\_')
-                        //, '[', '\[')
-
-                        //or you can use:
-                        //encryptString = encryptString.Replace("\n", "\\");
-                        //encryptString = encryptString.Replace("%", "\n%");
-                        //encryptString = encryptString.Replace("_", "\n_");
-                        //encryptString = encryptString.Replace("[", "\n[");
-                        #endregion
-                        // i send string "Rsa" because he have special output char 
-                        encryptString = "RSA";
+                        byte [] byteEncrypt = methodEncrypt.RsaEncryptByte(tBInput.Text);
+                        variables.EncryptByte = byteEncrypt;
                         break;
                     case 3:
                         encryptString = methodEncrypt.GetMd5Hash(tBInput.Text);

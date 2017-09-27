@@ -26,6 +26,9 @@ namespace TestingEncryptionMethod.RefWcf {
         private string EncryptField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private byte[] EncryptByteField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int NumberMethodMsSQLField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -62,6 +65,19 @@ namespace TestingEncryptionMethod.RefWcf {
                 if ((object.ReferenceEquals(this.EncryptField, value) != true)) {
                     this.EncryptField = value;
                     this.RaisePropertyChanged("Encrypt");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte[] EncryptByte {
+            get {
+                return this.EncryptByteField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.EncryptByteField, value) != true)) {
+                    this.EncryptByteField = value;
+                    this.RaisePropertyChanged("EncryptByte");
                 }
             }
         }

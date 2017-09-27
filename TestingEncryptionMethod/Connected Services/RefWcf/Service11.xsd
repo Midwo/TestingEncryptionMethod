@@ -3,6 +3,7 @@
   <xs:complexType name="Variables">
     <xs:sequence>
       <xs:element minOccurs="0" name="Encrypt" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EncryptByte" nillable="true" type="xs:base64Binary" />
       <xs:element minOccurs="0" name="NumberMethodMsSQL" type="xs:int" />
       <xs:element minOccurs="0" name="NumberMethodWCF" type="xs:int" />
       <xs:element minOccurs="0" name="NumberMethodWinForms" type="xs:int" />

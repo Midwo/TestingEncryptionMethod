@@ -39,13 +39,40 @@ namespace WCFTestEncryptionMethod
 
 
                 #endregion
-              
 
+                EncryptDecrypt method = new EncryptDecrypt();
                 string nameMethodWcf = "";
                 string nameMethodWinForms= "";
                 string nameMethodMsSQL = "";
                 string codeHashCommand = "";
                 string sizeInput = "";
+
+                switch (windowsForm.NumberMethodWinForms)
+                {
+                    case 0:
+                        nameMethodWinForms = "Clear group";
+                        break;
+                    case 1:
+                        nameMethodWinForms = "MD5";
+                        break;
+                    case 2:
+                        nameMethodWinForms = "RSA";
+                        byte[] rsaEncryptByte = method.RsaDectryptByte(windowsForm.EncryptByte);
+                        codeHashCommand = Convert.ToBase64String(rsaEncryptByte);
+                        break;
+                    case 3:
+                        nameMethodWinForms = "AES";
+                        break;
+                    case 4:
+                        nameMethodWinForms = "DES";
+                        break;
+                    case 5:
+                        nameMethodWinForms = "Triple DES";
+                        break;
+                    case 6:
+                        nameMethodWinForms = "RC4";
+                        break;
+                }
 
                 switch (windowsForm.NumberMethodWCF)
                 {
@@ -115,30 +142,7 @@ namespace WCFTestEncryptionMethod
                         break;
 
                 }
-                switch (windowsForm.NumberMethodWinForms)
-                {
-                    case 0:
-                        nameMethodWinForms = "Clear group";
-                        break;
-                    case 1:
-                        nameMethodWinForms = "MD5";
-                        break;
-                    case 2:
-                        nameMethodWinForms = "RSA";
-                        break;
-                    case 3:
-                        nameMethodWinForms = "AES";
-                        break;
-                    case 4:
-                        nameMethodWinForms = "DES";
-                        break;
-                    case 5:
-                        nameMethodWinForms = "Triple DES";
-                        break;
-                    case 6:
-                        nameMethodWinForms = "RC4";
-                        break;
-                }
+        
 
                 ConMsSQL conMsSQL = new ConMsSQL();
 
