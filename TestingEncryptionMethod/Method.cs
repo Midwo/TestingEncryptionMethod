@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -32,8 +33,8 @@ namespace TestingEncryptionMethod
 
                     byte [] encryptedData = rsa.Encrypt(testData, true);
                     
-                    var base64Encrypted = Convert.ToBase64String(encryptedData);
-                    MessageBox.Show(base64Encrypted);
+                //    var base64Encrypted = Convert.ToBase64String(encryptedData);
+                  //  MessageBox.Show(base64Encrypted);
 
                     // server decrypting data with private key
                     //
@@ -51,7 +52,7 @@ namespace TestingEncryptionMethod
             }
         }
 
-        public byte[] RsaDectryptByte(byte [] RsaEncryptByte)
+        public byte [] RsaDectryptByte(byte [] RsaEncryptByte)
         {
     
 
@@ -71,8 +72,8 @@ namespace TestingEncryptionMethod
                     rsa.FromXmlString(privateKey);
 
                     var decryptedBytes = rsa.Decrypt(RsaEncryptByte, true);
-                    var decryptedData = Encoding.UTF8.GetString(decryptedBytes);
-                    MessageBox.Show(decryptedData);
+                   // var decryptedData = Encoding.UTF8.GetString(decryptedBytes);
+                   // MessageBox.Show(decryptedData, "lol123");
 
                     return decryptedBytes;
 
@@ -86,151 +87,7 @@ namespace TestingEncryptionMethod
         }
 
 
-        //public byte [] GetRsa(string content)
-        //{
-        //    byte[] encryptedData = new byte[0];
-
-        //    try
-        //    {
-        //        //Create a UnicodeEncoder to convert between byte array and string.
-        //        UnicodeEncoding ByteConverter = new UnicodeEncoding();
-        //        //Create byte arrays to hold original, encrypted, and decrypted data.
-        //        byte[] dataToEncrypt = ByteConverter.GetBytes(content);
-
-        //      byte[] decryptedData;
-
-        //        //Create a new instance of RSACryptoServiceProvider to generate
-        //        //public and private key data.
-        //        using (RSACryptoServiceProvider RSA = new RSACryptoServiceProvider())
-        //        {
-
-        //            //Pass the data to ENCRYPT, the public key information 
-        //            //(using RSACryptoServiceProvider.ExportParameters(false),
-        //            //and a boolean flag specifying no OAEP padding.
-        //            encryptedData = RSAEncrypt(dataToEncrypt, RSA.ExportParameters(false), false);
-
-        //            //Pass the data to DECRYPT, the private key information 
-        //            // (using RSACryptoServiceProvider.ExportParameters(true),
-        //            //and a boolean flag specifying no OAEP padding.
-
-        //            byte[] dane = RSADecrypt(encryptedData, RSA.ExportParameters(true), false);
-        //            decryptedData = dane;
-        //            MessageBox.Show(ByteConverter.GetString(decryptedData), "lol");
-        //            RSAParameters RSAParams = RSA.ExportParameters(true);
-        //            MessageBox.Show(RSAParams.GetHashCode().ToString());
-        //           decryptedData = RSADecrypt(encryptedData, RSA.ExportParameters(true), false);
-
-        //            //Display the decrypted plaintext
-
-        //            MessageBox.Show("" + ByteConverter.GetString(decryptedData) + "", "hmm");
-        //            return encryptedData;
-
-
-        //        }
-        //    }
-        //    catch (ArgumentNullException)
-        //    {
-        //        //Catch this exception in case the encryption
-        //        //not succeed.
-        //        MessageBox.Show("Encryption failed.", "RSA - information");
-
-
-        //    }
-
-
-        //    try
-        //    {
-        //        //Create RSACryptoServiceProvider
-        //        using (RSACryptoServiceProvider RSA = new RSACryptoServiceProvider())
-        //        {
-
-
-        //            //Export the key information to an RSAParameters object.
-        //            //Pass false to export the public key information or pass
-        //            //true to export public and private key information.
-        //            RSAParameters RSAParams = RSA.ExportParameters(false);
-        //        }
-
-
-        //    }
-        //    catch (CryptographicException ex)
-        //    {
-        //        //exception in case the encryption
-        //        //not succeed.
-        //        MessageBox.Show("" + ex.Message + "", "RSA - information");
-
-
-        //    }
-        //    return encryptedData;
-        //}
-
-
-        //static public byte[] RSAEncrypt(byte[] DataToEncrypt, RSAParameters RSAKeyInfo, bool DoOAEPPadding)
-        //{
-        //    try
-        //    {
-        //        byte[] encryptedData;
-        //        //Create a new instance of RSACryptoServiceProvider.
-        //        using (RSACryptoServiceProvider RSA = new RSACryptoServiceProvider())
-        //        {
-
-        //            //Import the RSA Key information. This only needs
-        //            //toinclude the public key information.
-        //            RSA.ImportParameters(RSAKeyInfo);
-
-        //            //Encrypt the passed byte array and specify OAEP padding.  
-        //            //OAEP padding is only available on Microsoft Windows XP or
-        //            //later.  
-        //            encryptedData = RSA.Encrypt(DataToEncrypt, DoOAEPPadding);
-        //        }
-        //        return encryptedData;
-        //    }
-        //    //Catch and display a CryptographicException  
-        //    //to the console.
-        //    catch (CryptographicException e)
-        //    {
-
-        //        MessageBox.Show("" + e.Message + "", "RSA - information");
-
-
-
-        //        return null;
-        //    }
-
-        //}
-
-        //static public byte[] RSADecrypt(byte[] DataToDecrypt, RSAParameters RSAKeyInfo, bool DoOAEPPadding)
-        //{
-        //    try
-        //    {
-        //        byte[] decryptedData;
-        //        //Create a new instance of RSACryptoServiceProvider.
-        //        using (RSACryptoServiceProvider RSA = new RSACryptoServiceProvider())
-        //        {
-        //            //Import the RSA Key information. This needs
-        //            //to include the private key information.
-        //            RSA.ImportParameters(RSAKeyInfo);
-
-        //            //Decrypt the passed byte array and specify OAEP padding.  
-        //            //OAEP padding is only available on Microsoft Windows XP or
-        //            //later.  
-        //            decryptedData = RSA.Decrypt(DataToDecrypt, DoOAEPPadding);
-        //        }
-        //        return decryptedData;
-        //    }
-        //    //Catch and display a CryptographicException  
-        //    //to the console.
-        //    catch (CryptographicException e)
-        //    {
-        //        MessageBox.Show("" + e.ToString() + "", "RSA - information");
-
-
-        //        return null;
-        //    }
-
-        //}
-
-        public string GetMd5Hash(string content)
+        public string Md5Hash(string content)
         {
             using (MD5 md5Hash = MD5.Create())
             {
@@ -242,7 +99,7 @@ namespace TestingEncryptionMethod
         }
 
 
-        static string CreateMd5Hash(MD5 md5Hash, string input)
+        private string CreateMd5Hash(MD5 md5Hash, string input)
         {
 
             byte[] data = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(input));
@@ -255,6 +112,157 @@ namespace TestingEncryptionMethod
             }
 
             return sBuilder.ToString();
+        }
+
+        public byte[] AesEncryptByte(string content)
+        {
+            string original = content;
+
+            // Create a new instance of the Aes
+            // class.  This generates a new key and initialization 
+            // vector (IV).
+
+            byte[] key = Convert.FromBase64String("BYe8YwuIn2aaa3FPWTZFlAa14EjdPAdN9FaZ9RQWihc=");
+            byte[] IV = Convert.FromBase64String("bsxnWolsAyO7kCfWuyrnq1==");
+
+
+            // Encrypt the string to an array of bytes.
+            byte[] encrypted = EncryptStringToBytes_Aes(original, key, IV);
+          
+
+            // Decrypt the bytes to a string.
+            //   string roundtrip = DecryptStringFromBytes_Aes(encrypted, key, IV);
+
+
+             return  encrypted;
+
+
+            //    MessageBox.Show("" + resultx + "");
+
+            //Display the original data and the decrypted data.
+            //  MessageBox.Show("" + original + "");
+            //    MessageBox.Show("" + roundtrip + "");
+
+        }
+
+
+        public string AesDecryptString(byte [] aesEncryptByte)
+        {
+           
+
+            // Create a new instance of the Aes
+            // class.  This generates a new key and initialization 
+            // vector (IV).
+
+            byte[] key = Convert.FromBase64String("BYe8YwuIn2aaa3FPWTZFlAa14EjdPAdN9FaZ9RQWihc=");
+            byte[] IV = Convert.FromBase64String("bsxnWolsAyO7kCfWuyrnq1==");
+
+
+
+            // Decrypt the bytes to a string.
+            string roundtrip = DecryptStringFromBytes_Aes(aesEncryptByte, key, IV);
+
+
+            return roundtrip;
+
+
+            //    MessageBox.Show("" + resultx + "");
+
+            //Display the original data and the decrypted data.
+            //  MessageBox.Show("" + original + "");
+            //    MessageBox.Show("" + roundtrip + "");
+
+        }
+
+        private byte[] EncryptStringToBytes_Aes(string plainText, byte[] Key, byte[] IV)
+        {
+            // check arguments.
+
+            if (plainText == null || plainText.Length <= 0)
+                throw new ArgumentNullException("plainText");
+            if (Key == null || Key.Length <= 0)
+                throw new ArgumentNullException("Key");
+            if (IV == null || IV.Length <= 0)
+                throw new ArgumentNullException("IV");
+            byte[] encrypted;
+
+            // Create an Aes object
+            // with the specified key and IV.
+
+            using (Aes aesAlg = Aes.Create())
+            {
+                aesAlg.Key = Key;
+                aesAlg.IV = IV;
+                // MessageBox.Show("" + System.Text.Encoding.UTF8.GetString(aesAlg.Key) + "");
+                //  MessageBox.Show("" + System.Text.Encoding.UTF8.GetString(aesAlg.IV) + "");
+                // Create a decrytor to perform the stream transform.
+                ICryptoTransform encryptor = aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV);
+
+                // Create the streams used for encryption.
+                using (MemoryStream msEncrypt = new MemoryStream())
+                {
+                    using (CryptoStream csEncrypt = new CryptoStream(msEncrypt, encryptor, CryptoStreamMode.Write))
+                    {
+                        using (StreamWriter swEncrypt = new StreamWriter(csEncrypt))
+                        {
+
+                            //Write all data to the stream.
+
+                            swEncrypt.Write(plainText);
+                        }
+                        encrypted = msEncrypt.ToArray();
+
+                    }
+                }
+            }
+
+            // Return the encrypted bytes from the memory stream.
+
+            return encrypted;
+        }
+        private string DecryptStringFromBytes_Aes(byte[] encryptText, byte[] Key, byte[] IV)
+        {
+            // check arguments.
+            if (encryptText == null || encryptText.Length <= 0)
+                throw new ArgumentNullException("encryptText");
+            if (Key == null || Key.Length <= 0)
+                throw new ArgumentNullException("Key");
+            if (IV == null || IV.Length <= 0)
+                throw new ArgumentNullException("IV");
+
+            // Declare the string used to hold
+            // the decrypted text.
+            string plaintext = null;
+
+            // Create an Aes object
+            // with the specified key and IV.
+            using (Aes aesAlg = Aes.Create())
+            {
+                aesAlg.Key = Key;
+                aesAlg.IV = IV;
+
+                // Create a decrytor to perform the stream transform.
+                ICryptoTransform decryptor = aesAlg.CreateDecryptor(aesAlg.Key, aesAlg.IV);
+
+                // Create the streams used for decryption.
+                using (MemoryStream msDecrypt = new MemoryStream(encryptText))
+                {
+                    using (CryptoStream csDecrypt = new CryptoStream(msDecrypt, decryptor, CryptoStreamMode.Read))
+                    {
+                        using (StreamReader srDecrypt = new StreamReader(csDecrypt))
+                        {
+
+                            // Read the decrypted bytes from the decrypting  stream
+                            // and place them in a string.
+                            plaintext = srDecrypt.ReadToEnd();
+                        }
+                    }
+                }
+
+            }
+
+            return plaintext;
+
         }
     }
 }

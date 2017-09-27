@@ -57,12 +57,13 @@ namespace WCFTestEncryptionMethod
                         break;
                     case 2:
                         nameMethodWinForms = "RSA";
-                        byte[] rsaEncryptByte = method.RsaDectryptByte(windowsForm.EncryptByte);
-                        codeHashCommand = Convert.ToBase64String(rsaEncryptByte);
+                        byte[] encryptByte = method.RsaDectryptByte(windowsForm.EncryptByte);
+                        windowsForm.Encrypt = Encoding.UTF8.GetString(encryptByte);
                         break;
                     case 3:
                         nameMethodWinForms = "AES";
-                        break;
+                        windowsForm.Encrypt = method.AesDecryptString(windowsForm.EncryptByte);
+                       break;
                     case 4:
                         nameMethodWinForms = "DES";
                         break;
@@ -81,12 +82,17 @@ namespace WCFTestEncryptionMethod
                         break;
                     case 1:
                         nameMethodWcf = "MD5";
+                        windowsForm.Encrypt = method.GetMd5Hash(windowsForm.Encrypt);
                         break;
                     case 2:
                         nameMethodWcf = "RSA";
+                        byte[] EncryptByte = method.RsaEncryptByte(windowsForm.Encrypt);
+                        windowsForm.Encrypt = Encoding.UTF8.GetString(EncryptByte);
                         break;
                     case 3:
                         nameMethodWcf = "AES";
+                        EncryptByte = method.AesEncryptByte(windowsForm.Encrypt);
+                        windowsForm.Encrypt = Encoding.UTF8.GetString(EncryptByte);
                         break;
                     case 4:
                         nameMethodWcf = "DES";

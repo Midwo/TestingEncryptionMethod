@@ -81,23 +81,26 @@ namespace TestingEncryptionMethod
                         encryptString = tBInput.Text;
                         break;
                     case 1:
-                        encryptString = methodEncrypt.GetMd5Hash(tBInput.Text);
+                        encryptString = methodEncrypt.Md5Hash(tBInput.Text);
                         break;
                     case 2:
                         byte [] byteEncrypt = methodEncrypt.RsaEncryptByte(tBInput.Text);
                         variables.EncryptByte = byteEncrypt;
                         break;
                     case 3:
-                        encryptString = methodEncrypt.GetMd5Hash(tBInput.Text);
+                        byteEncrypt = methodEncrypt.AesEncryptByte(tBInput.Text);
+                        variables.EncryptByte = byteEncrypt;
+                        encryptString = methodEncrypt.AesDecryptString(byteEncrypt);
+                     //   MessageBox.Show(encryptString, "123");
                         break;
                     case 4:
-                        encryptString = methodEncrypt.GetMd5Hash(tBInput.Text);
+                        encryptString = methodEncrypt.Md5Hash(tBInput.Text);
                         break;
                     case 5:
-                        encryptString = methodEncrypt.GetMd5Hash(tBInput.Text);
+                        encryptString = methodEncrypt.Md5Hash(tBInput.Text);
                         break;
                     case 6:
-                        encryptString = methodEncrypt.GetMd5Hash(tBInput.Text);
+                        encryptString = methodEncrypt.Md5Hash(tBInput.Text);
                         break;
                 }
                 MessageBox.Show("" + encryptString + "");
