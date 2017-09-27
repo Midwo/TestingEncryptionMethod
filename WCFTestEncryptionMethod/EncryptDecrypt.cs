@@ -85,7 +85,6 @@ namespace WCFTestEncryptionMethod
             }
         }
 
-
         public string GetMd5Hash(string content)
         {
             using (MD5 md5Hash = MD5.Create())
@@ -96,7 +95,6 @@ namespace WCFTestEncryptionMethod
             }
 
         }
-
 
         private string CreateMd5Hash(MD5 md5Hash, string input)
         {
@@ -112,7 +110,6 @@ namespace WCFTestEncryptionMethod
 
             return sBuilder.ToString();
         }
-
 
         public byte[] AesEncryptByte(string content)
         {
@@ -144,7 +141,6 @@ namespace WCFTestEncryptionMethod
             //    MessageBox.Show("" + roundtrip + "");
 
         }
-
 
         public string AesDecryptString(byte [] aesEncryptByte)
         {
@@ -265,5 +261,53 @@ namespace WCFTestEncryptionMethod
             return plaintext;
 
         }
+
+        public string Rc4EncryptString(string content)
+        {
+            string key = "+A8oH4yVJ4ZBaeOqM0X1CUOgMPIcFkrbrTCDgsMEYCYO9asamOWlLUCJptp1xKZahtDn7iZa5MwqVFUm";
+            string cypheredText = RC4(content, key);
+
+            return cypheredText;
+        }
+
+        public string Rc4DecryptString(string encriptString)
+        {
+            string key = "+A8oH4yVJ4ZBaeOqM0X1CUOgMPIcFkrbrTCDgsMEYCYO9asamOWlLUCJptp1xKZahtDn7iZa5MwqVFUm";
+            string deCypheredText = RC4(encriptString, key);
+            return deCypheredText;
+        }
+
+        private string RC4(string input, string key)
+        {
+            StringBuilder result = new StringBuilder();
+            int x, y, j = 0;
+            int[] box = new int[256];
+
+            for (int i = 0; i < 256; i++)
+            {
+                box[i] = i;
+            }
+
+            for (int i = 0; i < 256; i++)
+            {
+                j = (key[i % key.Length] + box[i] + j) % 256;
+                x = box[i];
+                box[i] = box[j];
+                box[j] = x;
+            }
+
+            for (int i = 0; i < input.Length; i++)
+            {
+                y = i % 256;
+                j = (box[y] + j) % 256;
+                x = box[y];
+                box[y] = box[j];
+                box[j] = x;
+
+                result.Append((char)(input[i] ^ box[(box[y] + box[j]) % 256]));
+            }
+            return result.ToString();
+        }
+
     }
 }

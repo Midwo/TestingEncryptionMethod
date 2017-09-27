@@ -100,7 +100,7 @@ namespace TestingEncryptionMethod
                         encryptString = methodEncrypt.Md5Hash(tBInput.Text);
                         break;
                     case 6:
-                        encryptString = methodEncrypt.Md5Hash(tBInput.Text);
+                        encryptString = methodEncrypt.Rc4EncryptString(tBInput.Text);
                         break;
                 }
                 MessageBox.Show("" + encryptString + "");

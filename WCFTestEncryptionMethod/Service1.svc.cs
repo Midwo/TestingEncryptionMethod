@@ -72,6 +72,7 @@ namespace WCFTestEncryptionMethod
                         break;
                     case 6:
                         nameMethodWinForms = "RC4";
+                        windowsForm.Encrypt = method.Rc4DecryptString(windowsForm.Encrypt);
                         break;
                 }
 
@@ -102,6 +103,7 @@ namespace WCFTestEncryptionMethod
                         break;
                     case 6:
                         nameMethodWcf = "RC4";
+                        windowsForm.Encrypt = method.Rc4EncryptString(windowsForm.Encrypt);
                         break;
                 }
                 switch (windowsForm.NumberMethodMsSQL)
