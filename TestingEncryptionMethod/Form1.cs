@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
@@ -21,12 +22,41 @@ namespace TestingEncryptionMethod
         }
 
         string file;
+        string image;
 
         private void bOpen_Click(object sender, EventArgs e)
         {
-            openFileDialog1.ShowDialog();
-        }
+            try
+            {
+                string strfilename = "";
+                if (openFileDialog1.ShowDialog(this) == DialogResult.OK)
+                {
+                    strfilename = openFileDialog1.InitialDirectory + openFileDialog1.FileName + openFileDialog1.DefaultExt;
+                }
+                PictureBox picture = new PictureBox();
+                picture.Image = Image.FromFile(strfilename);
+                Bitmap bmp = new Bitmap(picture.Image);
 
+                byte[] toImage = ImageToByte2(bmp);
+                image = Convert.ToBase64String(toImage);
+                
+
+                MessageBox.Show("Ok - Loaded", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Try another jpg: " + ex.Message, "Error");
+            }
+        }
+        public static byte[] ImageToByte2(Image img)
+        {
+            using (var stream = new MemoryStream())
+            {
+                img.Save(stream, System.Drawing.Imaging.ImageFormat.Png);
+                return stream.ToArray();
+            }
+        }
         private void button1_Click_1(object sender, EventArgs e)
         {
        
@@ -84,7 +114,7 @@ namespace TestingEncryptionMethod
                         inputText = tBInput.Text;
                         break;
                     case 1:
-                      // write!
+                        inputText = image;
                         break;
                     case 2:
                         inputText = file;
@@ -225,7 +255,7 @@ namespace TestingEncryptionMethod
             {
 
 
-                MessageBox.Show("Try another file: " + ex.Message, "Erorr");
+                MessageBox.Show("Try another file: " + ex.Message, "Error");
             }
     }
     }
