@@ -66,9 +66,11 @@ namespace WCFTestEncryptionMethod
                        break;
                     case 4:
                         nameMethodWinForms = "DES";
+                        windowsForm.Encrypt = method.DesDecrypt(windowsForm.Encrypt);
                         break;
                     case 5:
                         nameMethodWinForms = "Triple DES";
+                        windowsForm.Encrypt = method.TripleDesDecrypt(windowsForm.EncryptByte);
                         break;
                     case 6:
                         nameMethodWinForms = "RC4";
@@ -88,18 +90,21 @@ namespace WCFTestEncryptionMethod
                     case 2:
                         nameMethodWcf = "RSA";
                         byte[] EncryptByte = method.RsaEncryptByte(windowsForm.Encrypt);
-                        windowsForm.Encrypt = Encoding.UTF8.GetString(EncryptByte);
+                        windowsForm.Encrypt = Convert.ToBase64String(EncryptByte);
                         break;
                     case 3:
                         nameMethodWcf = "AES";
                         EncryptByte = method.AesEncryptByte(windowsForm.Encrypt);
-                        windowsForm.Encrypt = Encoding.UTF8.GetString(EncryptByte);
+                        windowsForm.Encrypt = Convert.ToBase64String(EncryptByte);
                         break;
                     case 4:
                         nameMethodWcf = "DES";
+                        windowsForm.Encrypt = method.DesEncryptString(windowsForm.Encrypt);
                         break;
                     case 5:
                         nameMethodWcf = "Triple DES";
+                        EncryptByte = method.TripleDesEncrypt(windowsForm.Encrypt);
+                        windowsForm.Encrypt = Convert.ToBase64String(EncryptByte);
                         break;
                     case 6:
                         nameMethodWcf = "RC4";
@@ -143,14 +148,15 @@ namespace WCFTestEncryptionMethod
                         sizeInput = "String 20 char";
                         break;
                     case 1:
-                        sizeInput = "JPG.size 0.1 MB < 0.7 MB";
+                        sizeInput = "Picture.jpg";
                         break;
                     case 2:
-                        sizeInput = "JPG.size 1MB < x MB";
+                        sizeInput = "File.txt";
                         break;
 
                 }
-        
+                
+
 
                 ConMsSQL conMsSQL = new ConMsSQL();
 
@@ -167,7 +173,7 @@ namespace WCFTestEncryptionMethod
                     ,[NameMethodWcf]
                     ,[NameBaseMethod]
                     ,[ContentCrypt]
-                    ,[Size]
+                    ,[Type]
                     ,[BaseStop]
                     ,[NameMethodWinForms])
                      Values('" + windowsForm.StartWinForms+"', '"+windowsForm.StopWinforms+"', '"+ runWcf+"', '"+ stopWcf + "', '"+ nameMethodWcf + "', '"+nameMethodMsSQL+"', "+codeHashCommand+",'" +sizeInput+"', GETDATE(), '"+nameMethodWinForms+"')";

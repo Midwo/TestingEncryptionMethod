@@ -50,6 +50,8 @@
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.openFileDialog2 = new System.Windows.Forms.OpenFileDialog();
             this.tableLayoutPanel4.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -68,8 +70,8 @@
             this.cBinput.FormattingEnabled = true;
             this.cBinput.Items.AddRange(new object[] {
             "String 20 char",
-            "JPG. size 0.1 MB < 0.7 MB",
-            "JPG. size 1MB < x MB"});
+            "Picture .jpg",
+            "File .txt"});
             this.cBinput.Location = new System.Drawing.Point(9, 19);
             this.cBinput.Name = "cBinput";
             this.cBinput.Size = new System.Drawing.Size(498, 21);
@@ -119,6 +121,7 @@
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.Controls.Add(this.bOpen);
+            this.flowLayoutPanel1.Controls.Add(this.button2);
             this.flowLayoutPanel1.Controls.Add(this.tBInput);
             this.flowLayoutPanel1.Controls.Add(this.groupBox1);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 58);
@@ -132,9 +135,9 @@
             this.bOpen.Enabled = false;
             this.bOpen.Location = new System.Drawing.Point(3, 3);
             this.bOpen.Name = "bOpen";
-            this.bOpen.Size = new System.Drawing.Size(99, 47);
+            this.bOpen.Size = new System.Drawing.Size(48, 47);
             this.bOpen.TabIndex = 0;
-            this.bOpen.Text = "Open";
+            this.bOpen.Text = "Add .jpg";
             this.bOpen.UseVisualStyleBackColor = false;
             this.bOpen.Click += new System.EventHandler(this.bOpen_Click);
             // 
@@ -142,7 +145,7 @@
             // 
             this.tBInput.Dock = System.Windows.Forms.DockStyle.Right;
             this.tBInput.Enabled = false;
-            this.tBInput.Location = new System.Drawing.Point(108, 3);
+            this.tBInput.Location = new System.Drawing.Point(112, 3);
             this.tBInput.MaxLength = 20;
             this.tBInput.Multiline = true;
             this.tBInput.Name = "tBInput";
@@ -152,7 +155,7 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.numericUpDown1);
-            this.groupBox1.Location = new System.Drawing.Point(361, 3);
+            this.groupBox1.Location = new System.Drawing.Point(365, 3);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(143, 47);
             this.groupBox1.TabIndex = 1;
@@ -225,7 +228,6 @@
             this.cBAlgorithmWCF.Name = "cBAlgorithmWCF";
             this.cBAlgorithmWCF.Size = new System.Drawing.Size(147, 21);
             this.cBAlgorithmWCF.TabIndex = 4;
-            this.cBAlgorithmWCF.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
             // 
             // groupBox4
             // 
@@ -334,6 +336,22 @@
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Status Info:";
             // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.button2.Enabled = false;
+            this.button2.Location = new System.Drawing.Point(57, 3);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(49, 47);
+            this.button2.TabIndex = 11;
+            this.button2.Text = "Add .txt";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // openFileDialog2
+            // 
+            this.openFileDialog2.FileName = "openFileDialog2";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -383,6 +401,8 @@
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.GroupBox groupBox7;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.OpenFileDialog openFileDialog2;
     }
 }
 

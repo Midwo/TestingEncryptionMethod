@@ -11,6 +11,7 @@ namespace TestingEncryptionMethod
 {
     class Method
     {
+       
         public byte [] RsaEncryptByte(string content)
         {
             var publicKey =
@@ -86,7 +87,6 @@ namespace TestingEncryptionMethod
             }
         }
 
-
         public string Md5Hash(string content)
         {
             using (MD5 md5Hash = MD5.Create())
@@ -97,7 +97,6 @@ namespace TestingEncryptionMethod
             }
             
         }
-
 
         private string CreateMd5Hash(MD5 md5Hash, string input)
         {
@@ -144,7 +143,6 @@ namespace TestingEncryptionMethod
             //    MessageBox.Show("" + roundtrip + "");
 
         }
-
 
         public string AesDecryptString(byte [] aesEncryptByte)
         {
@@ -220,6 +218,7 @@ namespace TestingEncryptionMethod
 
             return encrypted;
         }
+
         private string DecryptStringFromBytes_Aes(byte[] encryptText, byte[] Key, byte[] IV)
         {
             // check arguments.
@@ -272,12 +271,14 @@ namespace TestingEncryptionMethod
  
             return cypheredText;
         }
+
         public string Rc4DecryptString(string encriptString)
         {
             string key = "+A8oH4yVJ4ZBaeOqM0X1CUOgMPIcFkrbrTCDgsMEYCYO9asamOWlLUCJptp1xKZahtDn7iZa5MwqVFUm";
             string deCypheredText = RC4(encriptString, key);
             return deCypheredText;
         }
+
         private string RC4(string input, string key)
         {
             StringBuilder result = new StringBuilder();
@@ -310,119 +311,140 @@ namespace TestingEncryptionMethod
             return result.ToString();
         }
 
-
-        public byte[] DesEncrypt(string content)
+        public string DesDecrypt (string encryptContent)
         {
-           
-                string original = "Here is some data to encrypt!";
+            byte [] Key = Convert.FromBase64String("QfqMuY1ls/s=");
+            byte [] IV = Convert.FromBase64String("VcaktTcHn70=");
 
-                // Create a new instance of the TripleDESCryptoServiceProvider
-                // class.  This generates a new key and initialization 
-                // vector (IV).
-                using (TripleDESCryptoServiceProvider myTripleDES = new TripleDESCryptoServiceProvider())
-                {
-                    // Encrypt the string to an array of bytes.
-                       byte[] encrypted = EncryptStringToBytes(original, myTripleDES.Key, myTripleDES.IV);
+            return DesDecryptStringMethod(encryptContent, Key, IV);
+        }
 
-                    // Decrypt the bytes to a string.
-                       string roundtrip = DecryptStringFromBytes(encrypted, myTripleDES.Key, myTripleDES.IV);
-
-                    MessageBox.Show(Convert.ToBase64String(encrypted));
-
-                    //Display the original data and the decrypted data.
-                    //  Console.WriteLine("Original:   {0}", original);
-                    // Console.WriteLine("Round Trip: {0}", roundtrip);
-
-                    return encrypted;
-                }
-            }
-        
-           
-
-        
-        private byte[] EncryptStringToBytes(string plainText, byte[] Key, byte[] IV)
+        public string DesEncryptString(string content)
         {
-            // Check arguments.
-            if (plainText == null || plainText.Length <= 0)
-                throw new ArgumentNullException("plainText");
-            if (Key == null || Key.Length <= 0)
-                throw new ArgumentNullException("Key");
-            if (IV == null || IV.Length <= 0)
-                throw new ArgumentNullException("Key");
-            byte[] encrypted;
-            // Create an TripleDESCryptoServiceProvider object
-            // with the specified key and IV.
-            using (TripleDESCryptoServiceProvider tdsAlg = new TripleDESCryptoServiceProvider())
+            DESCryptoServiceProvider cryptoProvider = new DESCryptoServiceProvider();
+            MemoryStream memoryStream = new MemoryStream();
+            cryptoProvider.Key = Convert.FromBase64String("QfqMuY1ls/s=");
+            cryptoProvider.IV = Convert.FromBase64String("VcaktTcHn70=");
+
+            CryptoStream cryptoStream = new CryptoStream(memoryStream, 
+                cryptoProvider.CreateEncryptor(cryptoProvider.Key, cryptoProvider.IV), CryptoStreamMode.Write);
+            StreamWriter writer = new StreamWriter(cryptoStream);
+            writer.Write(content);
+            writer.Flush();
+            cryptoStream.FlushFinalBlock();
+            writer.Flush();
+            return Convert.ToBase64String(memoryStream.GetBuffer(), 0, (int)memoryStream.Length);
+        }
+
+        private string DesDecryptStringMethod(string cryptContent, byte[] Key, byte[] IV)
+        {
+            DESCryptoServiceProvider cryptoProvider = new DESCryptoServiceProvider();
+       
+            MemoryStream memoryStream = new MemoryStream
+                    (Convert.FromBase64String(cryptContent));
+            CryptoStream cryptoStream = new CryptoStream(memoryStream,
+                cryptoProvider.CreateDecryptor(Key, IV), CryptoStreamMode.Read);
+            StreamReader reader = new StreamReader(cryptoStream);
+            return reader.ReadToEnd();
+        }
+
+        private static byte[] TripleDesEncryptTextToMemory(string Data, byte[] Key, byte[] IV)
+        {
+            try
             {
-                tdsAlg.Key = Key;
-                tdsAlg.IV = IV;
+                // Create a MemoryStream.
+                MemoryStream mStream = new MemoryStream();
 
-                // Create a decrytor to perform the stream transform.
-                ICryptoTransform encryptor = tdsAlg.CreateEncryptor(tdsAlg.Key, tdsAlg.IV);
+                // Create a CryptoStream using the MemoryStream 
+                // and the passed key and initialization vector (IV).
+                CryptoStream cStream = new CryptoStream(mStream,
+                    new TripleDESCryptoServiceProvider().CreateEncryptor(Key, IV),
+                    CryptoStreamMode.Write);
+                
+                // Convert the passed string to a byte array.
+                byte[] toEncrypt = new ASCIIEncoding().GetBytes(Data);
 
-                // Create the streams used for encryption.
-                using (MemoryStream msEncrypt = new MemoryStream())
-                {
-                    using (CryptoStream csEncrypt = new CryptoStream(msEncrypt, encryptor, CryptoStreamMode.Write))
-                    {
-                        using (StreamWriter swEncrypt = new StreamWriter(csEncrypt))
-                        {
+                // Write the byte array to the crypto stream and flush it.
+                cStream.Write(toEncrypt, 0, toEncrypt.Length);
+                cStream.FlushFinalBlock();
 
-                            //Write all data to the stream.
-                            swEncrypt.Write(plainText);
-                        }
-                        encrypted = msEncrypt.ToArray();
-                    }
-                }
+                // Get an array of bytes from the 
+                // MemoryStream that holds the 
+                // encrypted data.
+                byte[] ret = mStream.ToArray();
+
+                // Close the streams.
+                cStream.Close();
+                mStream.Close();
+
+                // Return the encrypted buffer.
+                return ret;
             }
-
-
-            // Return the encrypted bytes from the memory stream.
-            return encrypted;
+            catch (CryptographicException e)
+            {
+                Console.WriteLine("A Cryptographic error occurred: {0}", e.Message);
+                return null;
+            }
 
         }
-        private string DecryptStringFromBytes(byte[] cipherText, byte[] Key, byte[] IV)
+
+        private static string TripleDescryptTextFromMemory(byte[] Data, byte[] Key, byte[] IV)
         {
-            // Check arguments.
-            if (cipherText == null || cipherText.Length <= 0)
-                throw new ArgumentNullException("cipherText");
-            if (Key == null || Key.Length <= 0)
-                throw new ArgumentNullException("Key");
-            if (IV == null || IV.Length <= 0)
-                throw new ArgumentNullException("Key");
-
-            // Declare the string used to hold
-            // the decrypted text.
-            string plaintext = null;
-
-            // Create an TripleDESCryptoServiceProvider object
-            // with the specified key and IV.
-            using (TripleDESCryptoServiceProvider tdsAlg = new TripleDESCryptoServiceProvider())
+            try
             {
-                tdsAlg.Key = Key;
-                tdsAlg.IV = IV;
+                // Create a new MemoryStream using the passed 
+                // array of encrypted data.
+                MemoryStream msDecrypt = new MemoryStream(Data);
 
-                // Create a decrytor to perform the stream transform.
-                ICryptoTransform decryptor = tdsAlg.CreateDecryptor(tdsAlg.Key, tdsAlg.IV);
+                // Create a CryptoStream using the MemoryStream 
+                // and the passed key and initialization vector (IV).
+                CryptoStream csDecrypt = new CryptoStream(msDecrypt,
+                    new TripleDESCryptoServiceProvider().CreateDecryptor(Key, IV),
+                    CryptoStreamMode.Read);
 
-                // Create the streams used for decryption.
-                using (MemoryStream msDecrypt = new MemoryStream(cipherText))
-                {
-                    using (CryptoStream csDecrypt = new CryptoStream(msDecrypt, decryptor, CryptoStreamMode.Read))
-                    {
-                        using (StreamReader srDecrypt = new StreamReader(csDecrypt))
-                        {
+                // Create buffer to hold the decrypted data.
+                byte[] fromEncrypt = new byte[Data.Length];
 
-                            // Read the decrypted bytes from the decrypting stream
-                            // and place them in a string.
-                            plaintext = srDecrypt.ReadToEnd();
-                        }
-                    }
-                }
+                // Read the decrypted data out of the crypto stream
+                // and place it into the temporary buffer.
+                csDecrypt.Read(fromEncrypt, 0, fromEncrypt.Length);
 
+                //Convert the buffer into a string and return it.
+                return new ASCIIEncoding().GetString(fromEncrypt);
             }
+            catch (CryptographicException e)
+            {
+                Console.WriteLine("A Cryptographic error occurred: {0}", e.Message);
+                return null;
+            }
+        }
 
-            return plaintext;
+        public byte [] TripleDesEncrypt(string content)
+        {
+            // Create a new TripleDESCryptoServiceProvider object
+            // to generate a key and initialization vector (IV).
+            //TripleDESCryptoServiceProvider tDESalg = new TripleDESCryptoServiceProvider();
+           byte[] Key = Convert.FromBase64String("kKPaDX9RR46Ybpbc5hkNbOiPrZnYU1r7");
+            byte[] IV = Convert.FromBase64String("MbP5zXAzWDY=");
+            //Key = tDESalg.Key;
+            // IV = tDESalg.IV;
+
+            // Encrypt the string to an in-memory buffer.
+           // return TripleDesEncryptTextToMemory(content, tDESalg.Key, tDESalg.IV);
+            return  TripleDesEncryptTextToMemory(content, Key, IV);    
+        }
+        public string TripleDesDecrypt(byte [] content)
+        {
+            // Create a new TripleDESCryptoServiceProvider object
+            // to generate a key and initialization vector (IV).
+
+            //  TripleDESCryptoServiceProvider tDESalg = new TripleDESCryptoServiceProvider();
+            byte[] Key = Convert.FromBase64String("kKPaDX9RR46Ybpbc5hkNbOiPrZnYU1r7");
+            byte[] IV = Convert.FromBase64String("MbP5zXAzWDY=");
+
+
+            // Decrypt the buffer back to a string.
+            return TripleDescryptTextFromMemory(content, Key, IV);
 
         }
 

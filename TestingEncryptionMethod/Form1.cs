@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -19,6 +20,7 @@ namespace TestingEncryptionMethod
             lStatusInfo.ResetText();
         }
 
+        string file;
 
         private void bOpen_Click(object sender, EventArgs e)
         {
@@ -27,11 +29,12 @@ namespace TestingEncryptionMethod
 
         private void button1_Click_1(object sender, EventArgs e)
         {
+       
             #region info
             //                table info in lStatusInfo - combobox:  
             //                0 - String 20 char
-            //                1 - JPG.size 0.1 MB < 0.7 MB
-            //                2 - JPG.size 1MB < x MB
+            //                1 - Picture.jpg
+            //                2 - File.txt
             // lStatusInfo.Text = cBinput.SelectedIndex.ToString();
 
             //Index in combobox - windwos form and WCF choose
@@ -73,34 +76,50 @@ namespace TestingEncryptionMethod
 
                 // method encrypt
 
+                string inputText ="";
+                // options jpg / txt / string
+                switch (cBinput.SelectedIndex)
+                {
+                    case 0:
+                        inputText = tBInput.Text;
+                        break;
+                    case 1:
+                      // write!
+                        break;
+                    case 2:
+                        inputText = file;
+                        break;
+                }
+
                 Method methodEncrypt = new Method();
                 string encryptString = "";
                 switch (cBAlgorithmWinForms.SelectedIndex)
                 {
                     case 0:
-                        encryptString = tBInput.Text;
+                        encryptString = inputText;
                         break;
                     case 1:
-                        encryptString = methodEncrypt.Md5Hash(tBInput.Text);
+                        encryptString = methodEncrypt.Md5Hash(inputText);
                         break;
                     case 2:
-                        byte [] byteEncrypt = methodEncrypt.RsaEncryptByte(tBInput.Text);
+                        byte [] byteEncrypt = methodEncrypt.RsaEncryptByte(inputText);
                         variables.EncryptByte = byteEncrypt;
                         break;
                     case 3:
-                        byteEncrypt = methodEncrypt.AesEncryptByte(tBInput.Text);
+                        byteEncrypt = methodEncrypt.AesEncryptByte(inputText);
                         variables.EncryptByte = byteEncrypt;
-                        encryptString = methodEncrypt.AesDecryptString(byteEncrypt);
-                     //   MessageBox.Show(encryptString, "123");
                         break;
                     case 4:
-                        encryptString = methodEncrypt.Md5Hash(tBInput.Text);
+                        encryptString = methodEncrypt.DesEncryptString(inputText); 
                         break;
                     case 5:
-                        encryptString = methodEncrypt.Md5Hash(tBInput.Text);
+                        byteEncrypt = methodEncrypt.TripleDesEncrypt(inputText);
+                        variables.EncryptByte = byteEncrypt;
+        
+                        //MessageBox.Show(Convert.ToBase64String(variables.EncryptByte));
                         break;
                     case 6:
-                        encryptString = methodEncrypt.Rc4EncryptString(tBInput.Text);
+                        encryptString = methodEncrypt.Rc4EncryptString(inputText);
                         break;
                 }
                 MessageBox.Show("" + encryptString + "");
@@ -136,17 +155,8 @@ namespace TestingEncryptionMethod
 
             lStatusInfo.Visible = true;
 
-       
-
-
-
-
-
 
         }
-
-    
-
 
 
         private void bReset_Click(object sender, EventArgs e)
@@ -159,6 +169,7 @@ namespace TestingEncryptionMethod
             bReset.Enabled = false;
             tBInput.Enabled = false;
             bOpen.Enabled = false;
+            button2.Enabled = false;
         }
 
         private void cBinput_SelectedIndexChanged(object sender, EventArgs e)
@@ -167,17 +178,20 @@ namespace TestingEncryptionMethod
             {
                 tBInput.Enabled = true;
                 bOpen.Enabled = false;
+                button2.Enabled = false;
             }
             if (cBinput.SelectedIndex == 1)
             {
                 tBInput.Enabled = false;
                 bOpen.Enabled = true;
+                button2.Enabled = false ;
                 tBInput.Clear();
             }
             if (cBinput.SelectedIndex == 2)
             {
                 tBInput.Enabled = false;
-                bOpen.Enabled = true;
+                bOpen.Enabled = false;
+                button2.Enabled = true;
                 tBInput.Clear();
             }
 
@@ -191,19 +205,28 @@ namespace TestingEncryptionMethod
             }
         }
 
-        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e)
         {
+            try
+            {
+                string strfilename = "";
+                if (openFileDialog2.ShowDialog(this) == DialogResult.OK)
+                {
+                    strfilename = openFileDialog2.InitialDirectory + openFileDialog2.FileName;
+                }
 
-        }
 
-        private void tableLayoutPanel2_Paint(object sender, PaintEventArgs e)
-        {
 
-        }
+                file = File.ReadAllText(strfilename);
 
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
 
-        }
+            }
+            catch (Exception ex)
+            {
+
+
+                MessageBox.Show("Try another file: " + ex.Message, "Erorr");
+            }
+    }
     }
 }
