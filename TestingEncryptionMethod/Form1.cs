@@ -152,7 +152,7 @@ namespace TestingEncryptionMethod
                         encryptString = methodEncrypt.Rc4EncryptString(inputText);
                         break;
                 }
-                MessageBox.Show("" + encryptString + "");
+              //  MessageBox.Show("" + encryptString + "");
                 variables.Encrypt = encryptString;
                 variables.StartWinForms = runWinForm;
                 variables.NumberMethodMsSQL = comboBox3.SelectedIndex;
@@ -177,7 +177,9 @@ namespace TestingEncryptionMethod
                 }
 
                 returnString = client.WindowsFormConnect(variables);
-                lStatusInfo.Text = "Send your message without error";
+
+
+                lStatusInfo.Text = returnString;
 
 
 

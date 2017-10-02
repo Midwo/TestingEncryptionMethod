@@ -156,12 +156,9 @@ namespace WCFTestEncryptionMethod
 
                 }
                 
-
-
                 ConMsSQL conMsSQL = new ConMsSQL();
 
                 //method encrypt
-
 
                 string stopWcf = DateTime.Now.ToString("yyyy-MM-dd  HH:mm:ss.ffffff");
                 string requestInstertInTable =
@@ -184,11 +181,11 @@ namespace WCFTestEncryptionMethod
              }
             catch
             {
-                return string.Format("Can't connect to Ms SQL");
+                return string.Format("Can't connect to Ms SQL or Error WCF");
             }
       
 
-            return string.Format("You send {0}, oraz {1} oraz {2} opcja algorytmu WCF {3} opcja bazy {4}", windowsForm.Encrypt, windowsForm.StartWinForms, windowsForm.StopWinforms, windowsForm.NumberMethodWCF, windowsForm.NumberMethodMsSQL);
+            return string.Format("OK - request in WCF and MS SQL - Successful");
 
         }
 
