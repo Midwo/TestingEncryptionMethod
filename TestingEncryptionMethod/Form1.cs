@@ -96,6 +96,7 @@ namespace TestingEncryptionMethod
             }
             else
             {
+                int delay = Decimal.ToInt32(numericUpDown2.Value);
                 // correct option
                 if (cBAlgorithmWinForms.SelectedIndex == 7)
                 {
@@ -104,6 +105,17 @@ namespace TestingEncryptionMethod
 
                 for (int i = 0; i < Int32.Parse(numericUpDown1.Value.ToString()); i++)
                 {
+
+                    if (delay != 0) {
+                        var t = Task.Run(async delegate
+                        {
+                            await Task.Delay(delay);
+                            return;
+                        });
+                        t.Wait();
+                    }
+                
+
                     bReset.Enabled = true;
                 string runWinForm = DateTime.Now.ToString("HH.mm.ss.ffffff");
 
@@ -239,9 +251,9 @@ namespace TestingEncryptionMethod
 
         private void numericUpDown1_KeyDown(object sender, KeyEventArgs e)
         {
-            if (numericUpDown1.Value > 10000)
+            if (numericUpDown1.Value > 100000000)
             {
-                numericUpDown1.Value = 10000;
+                numericUpDown1.Value = 100000000;
             }
         }
 

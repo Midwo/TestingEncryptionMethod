@@ -52,6 +52,8 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.openFileDialog2 = new System.Windows.Forms.OpenFileDialog();
+            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel4.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -63,6 +65,8 @@
             this.groupBox6.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
+            this.groupBox8.SuspendLayout();
             this.SuspendLayout();
             // 
             // cBinput
@@ -86,11 +90,11 @@
             this.tableLayoutPanel4.Controls.Add(this.bRun, 0, 0);
             this.tableLayoutPanel4.Controls.Add(this.bReset, 1, 0);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 195);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 200);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 1;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(514, 57);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(514, 52);
             this.tableLayoutPanel4.TabIndex = 8;
             // 
             // bRun
@@ -99,7 +103,7 @@
             this.bRun.Dock = System.Windows.Forms.DockStyle.Fill;
             this.bRun.Location = new System.Drawing.Point(3, 3);
             this.bRun.Name = "bRun";
-            this.bRun.Size = new System.Drawing.Size(240, 51);
+            this.bRun.Size = new System.Drawing.Size(240, 46);
             this.bRun.TabIndex = 0;
             this.bRun.Text = "Run";
             this.bRun.UseVisualStyleBackColor = false;
@@ -112,7 +116,7 @@
             this.bReset.Enabled = false;
             this.bReset.Location = new System.Drawing.Point(249, 3);
             this.bReset.Name = "bReset";
-            this.bReset.Size = new System.Drawing.Size(262, 51);
+            this.bReset.Size = new System.Drawing.Size(262, 46);
             this.bReset.TabIndex = 1;
             this.bReset.Text = "Reset";
             this.bReset.UseVisualStyleBackColor = false;
@@ -124,7 +128,7 @@
             this.flowLayoutPanel1.Controls.Add(this.button2);
             this.flowLayoutPanel1.Controls.Add(this.tBInput);
             this.flowLayoutPanel1.Controls.Add(this.groupBox1);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 58);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 56);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(512, 55);
             this.flowLayoutPanel1.TabIndex = 5;
@@ -178,7 +182,7 @@
             // 
             this.numericUpDown1.Location = new System.Drawing.Point(6, 16);
             this.numericUpDown1.Maximum = new decimal(new int[] {
-            10000,
+            100000000,
             0,
             0,
             0});
@@ -217,7 +221,7 @@
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.cBAlgorithmWCF);
-            this.groupBox3.Location = new System.Drawing.Point(9, 19);
+            this.groupBox3.Location = new System.Drawing.Point(5, 19);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(153, 48);
             this.groupBox3.TabIndex = 1;
@@ -245,7 +249,7 @@
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.cBAlgorithmWinForms);
-            this.groupBox4.Location = new System.Drawing.Point(177, 19);
+            this.groupBox4.Location = new System.Drawing.Point(175, 19);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(157, 48);
             this.groupBox4.TabIndex = 5;
@@ -273,7 +277,7 @@
             // groupBox5
             // 
             this.groupBox5.Controls.Add(this.comboBox3);
-            this.groupBox5.Location = new System.Drawing.Point(350, 19);
+            this.groupBox5.Location = new System.Drawing.Point(347, 19);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(162, 48);
             this.groupBox5.TabIndex = 6;
@@ -303,9 +307,9 @@
             this.groupBox2.Controls.Add(this.groupBox5);
             this.groupBox2.Controls.Add(this.groupBox4);
             this.groupBox2.Controls.Add(this.groupBox3);
-            this.groupBox2.Location = new System.Drawing.Point(3, 119);
+            this.groupBox2.Location = new System.Drawing.Point(3, 118);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(514, 70);
+            this.groupBox2.Size = new System.Drawing.Size(514, 74);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Choose an algorithm";
@@ -324,30 +328,31 @@
             // 
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Controls.Add(this.groupBox7, 0, 4);
+            this.tableLayoutPanel1.Controls.Add(this.groupBox8, 0, 4);
             this.tableLayoutPanel1.Controls.Add(this.groupBox6, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.groupBox2, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel1, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel4, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.groupBox7, 0, 5);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 5;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 47.41379F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 52.58621F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 76F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 63F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 47F));
+            this.tableLayoutPanel1.RowCount = 6;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 45.83333F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 54.16667F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 82F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 58F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 58F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 59F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(520, 303);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(520, 373);
             this.tableLayoutPanel1.TabIndex = 9;
             // 
             // groupBox7
             // 
             this.groupBox7.Controls.Add(this.lStatusInfo);
-            this.groupBox7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox7.Location = new System.Drawing.Point(3, 258);
+            this.groupBox7.Location = new System.Drawing.Point(3, 316);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(514, 42);
+            this.groupBox7.Size = new System.Drawing.Size(514, 54);
             this.groupBox7.TabIndex = 10;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Status Info:";
@@ -356,12 +361,29 @@
             // 
             this.openFileDialog2.FileName = "openFileDialog2";
             // 
+            // numericUpDown2
+            // 
+            this.numericUpDown2.Location = new System.Drawing.Point(8, 19);
+            this.numericUpDown2.Name = "numericUpDown2";
+            this.numericUpDown2.Size = new System.Drawing.Size(90, 20);
+            this.numericUpDown2.TabIndex = 10;
+            // 
+            // groupBox8
+            // 
+            this.groupBox8.Controls.Add(this.numericUpDown2);
+            this.groupBox8.Location = new System.Drawing.Point(3, 258);
+            this.groupBox8.Name = "groupBox8";
+            this.groupBox8.Size = new System.Drawing.Size(106, 51);
+            this.groupBox8.TabIndex = 11;
+            this.groupBox8.TabStop = false;
+            this.groupBox8.Text = "Delay";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(521, 304);
+            this.ClientSize = new System.Drawing.Size(522, 375);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
@@ -379,6 +401,8 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
+            this.groupBox8.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -407,6 +431,8 @@
         private System.Windows.Forms.GroupBox groupBox7;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.OpenFileDialog openFileDialog2;
+        private System.Windows.Forms.NumericUpDown numericUpDown2;
+        private System.Windows.Forms.GroupBox groupBox8;
     }
 }
 
