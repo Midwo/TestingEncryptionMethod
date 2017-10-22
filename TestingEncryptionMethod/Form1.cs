@@ -23,6 +23,7 @@ namespace TestingEncryptionMethod
 
         string file;
         string image;
+        string request;
 
         private void bOpen_Click(object sender, EventArgs e)
         {
@@ -59,7 +60,7 @@ namespace TestingEncryptionMethod
         }
         private void button1_Click_1(object sender, EventArgs e)
         {
-       
+
             #region info
             //                table info in lStatusInfo - combobox:  
             //                0 - String 20 char
@@ -96,8 +97,14 @@ namespace TestingEncryptionMethod
             else
             {
                 // correct option
+                if (cBAlgorithmWinForms.SelectedIndex == 7)
+                {
+                    
+                }
 
-                bReset.Enabled = true;
+                for (int i = 0; i < Int32.Parse(numericUpDown1.Value.ToString()); i++)
+                {
+                    bReset.Enabled = true;
                 string runWinForm = DateTime.Now.ToString("HH.mm.ss.ffffff");
 
                 RefWcf.Service1Client client = new RefWcf.Service1Client();
@@ -106,7 +113,7 @@ namespace TestingEncryptionMethod
 
                 // method encrypt
 
-                string inputText ="";
+                string inputText = "";
                 // options jpg / txt / string
                 switch (cBinput.SelectedIndex)
                 {
@@ -132,7 +139,7 @@ namespace TestingEncryptionMethod
                         encryptString = methodEncrypt.Md5Hash(inputText);
                         break;
                     case 2:
-                        byte [] byteEncrypt = methodEncrypt.RsaEncryptByte(inputText);
+                        byte[] byteEncrypt = methodEncrypt.RsaEncryptByte(inputText);
                         variables.EncryptByte = byteEncrypt;
                         break;
                     case 3:
@@ -140,19 +147,20 @@ namespace TestingEncryptionMethod
                         variables.EncryptByte = byteEncrypt;
                         break;
                     case 4:
-                        encryptString = methodEncrypt.DesEncryptString(inputText); 
+                        encryptString = methodEncrypt.DesEncryptString(inputText);
                         break;
                     case 5:
                         byteEncrypt = methodEncrypt.TripleDesEncrypt(inputText);
                         variables.EncryptByte = byteEncrypt;
-        
+
                         //MessageBox.Show(Convert.ToBase64String(variables.EncryptByte));
                         break;
                     case 6:
                         encryptString = methodEncrypt.Rc4EncryptString(inputText);
-                        break;
+                        break;                   
+
                 }
-              //  MessageBox.Show("" + encryptString + "");
+                //  MessageBox.Show("" + encryptString + "");
                 variables.Encrypt = encryptString;
                 variables.StartWinForms = runWinForm;
                 variables.NumberMethodMsSQL = comboBox3.SelectedIndex;
@@ -166,21 +174,21 @@ namespace TestingEncryptionMethod
                 variables.StopWinforms = stopWinForm;
 
                 string returnString;
-        
+
                 // MessageBox.Show("" + returnString + "");
 
 
+
                
-                for (int  i = 1; i < Int32.Parse(numericUpDown1.Value.ToString()); i++)
-                {
-                    client.WindowsFormConnect(variables);
-                }
+               
+            
 
                 returnString = client.WindowsFormConnect(variables);
+                    request = returnString;
+                }
 
 
-                lStatusInfo.Text = returnString;
-
+                lStatusInfo.Text = request; 
 
 
             }

@@ -35,6 +35,7 @@
             this.bReset = new System.Windows.Forms.Button();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.bOpen = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.tBInput = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
@@ -50,7 +51,6 @@
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
-            this.button2 = new System.Windows.Forms.Button();
             this.openFileDialog2 = new System.Windows.Forms.OpenFileDialog();
             this.tableLayoutPanel4.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
@@ -141,6 +141,18 @@
             this.bOpen.UseVisualStyleBackColor = false;
             this.bOpen.Click += new System.EventHandler(this.bOpen_Click);
             // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.button2.Enabled = false;
+            this.button2.Location = new System.Drawing.Point(57, 3);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(49, 47);
+            this.button2.TabIndex = 11;
+            this.button2.Text = "Add .txt";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // tBInput
             // 
             this.tBInput.Dock = System.Windows.Forms.DockStyle.Right;
@@ -223,7 +235,8 @@
             "AES",
             "DES",
             "Triple DES",
-            "RC4"});
+            "RC4",
+            "All Group"});
             this.cBAlgorithmWCF.Location = new System.Drawing.Point(3, 16);
             this.cBAlgorithmWCF.Name = "cBAlgorithmWCF";
             this.cBAlgorithmWCF.Size = new System.Drawing.Size(147, 21);
@@ -250,7 +263,8 @@
             "AES",
             "DES",
             "Triple DES",
-            "RC4"});
+            "RC4",
+            "All Group"});
             this.cBAlgorithmWinForms.Location = new System.Drawing.Point(3, 16);
             this.cBAlgorithmWinForms.Name = "cBAlgorithmWinForms";
             this.cBAlgorithmWinForms.Size = new System.Drawing.Size(151, 21);
@@ -277,7 +291,8 @@
             "SHA",
             "SHA1",
             "SHA2_256",
-            "SHA2_512"});
+            "SHA2_512",
+            "All Group"});
             this.comboBox3.Location = new System.Drawing.Point(3, 16);
             this.comboBox3.Name = "comboBox3";
             this.comboBox3.Size = new System.Drawing.Size(156, 21);
@@ -336,18 +351,6 @@
             this.groupBox7.TabIndex = 10;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Status Info:";
-            // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button2.Enabled = false;
-            this.button2.Location = new System.Drawing.Point(57, 3);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(49, 47);
-            this.button2.TabIndex = 11;
-            this.button2.Text = "Add .txt";
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // openFileDialog2
             // 
