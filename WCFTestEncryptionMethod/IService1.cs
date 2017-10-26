@@ -33,7 +33,17 @@ namespace WCFTestEncryptionMethod
         int numberMethodWinForms;
         int size;
         byte[] encryptByte;
-       
+        int delay;
+        int option;
+        int repeat;
+
+        [DataMember]
+        public int Repeat
+        {
+            get { return repeat; }
+            set { repeat = value; }
+        }
+
 
         [DataMember]
         public byte [] EncryptByte
@@ -42,6 +52,19 @@ namespace WCFTestEncryptionMethod
             set { encryptByte = value; }
         }
 
+        [DataMember]
+        public int Delay
+        {
+            get { return delay; }
+            set { delay = value; }
+        } 
+
+        [DataMember]
+        public int Option
+        {
+            get { return option; }
+            set { option = value; }
+        }
 
         [DataMember]
         public int NumberMethodWinForms

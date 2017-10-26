@@ -21,26 +21,41 @@ namespace WCFTestEncryptionMethod
                 SqlDataAdapter adp = new SqlDataAdapter(cmd, connection);
 
                 DataSet ds = new DataSet();
+
                 try
                 {
                     adp.Fill(ds);
                 }
                 catch
                 {
+                    connection.Close();
                     return ds;
                 }
+                connection.Close();
                 return ds;
             }
         }
 
         public void sqlcommand(string cmd)
         {
+            //using (SqlConnection connection = new SqlConnection(sqlcon))
+            //{
+
+            //    SqlCommand command = new SqlCommand(cmd, connection);
+            //    command.CommandTimeout = 120;
+            //    command.Connection.Open();
+            //    command.ExecuteNonQuery();
+
+            //}
             using (SqlConnection connection = new SqlConnection(sqlcon))
             {
+                connection.Open();
                 SqlCommand command = new SqlCommand(cmd, connection);
-                command.Connection.Open();
+                command.CommandTimeout = 1;
                 command.ExecuteNonQuery();
+
             }
+
         }
     }
 }

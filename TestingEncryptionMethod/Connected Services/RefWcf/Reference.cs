@@ -23,6 +23,9 @@ namespace TestingEncryptionMethod.RefWcf {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int DelayField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string EncryptField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -36,6 +39,12 @@ namespace TestingEncryptionMethod.RefWcf {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int NumberMethodWinFormsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int OptionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int RepeatField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int SizeField;
@@ -53,6 +62,19 @@ namespace TestingEncryptionMethod.RefWcf {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Delay {
+            get {
+                return this.DelayField;
+            }
+            set {
+                if ((this.DelayField.Equals(value) != true)) {
+                    this.DelayField = value;
+                    this.RaisePropertyChanged("Delay");
+                }
             }
         }
         
@@ -117,6 +139,32 @@ namespace TestingEncryptionMethod.RefWcf {
                 if ((this.NumberMethodWinFormsField.Equals(value) != true)) {
                     this.NumberMethodWinFormsField = value;
                     this.RaisePropertyChanged("NumberMethodWinForms");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Option {
+            get {
+                return this.OptionField;
+            }
+            set {
+                if ((this.OptionField.Equals(value) != true)) {
+                    this.OptionField = value;
+                    this.RaisePropertyChanged("Option");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Repeat {
+            get {
+                return this.RepeatField;
+            }
+            set {
+                if ((this.RepeatField.Equals(value) != true)) {
+                    this.RepeatField = value;
+                    this.RaisePropertyChanged("Repeat");
                 }
             }
         }

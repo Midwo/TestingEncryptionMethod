@@ -2,11 +2,14 @@
 <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/WCFTestEncryptionMethod" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/WCFTestEncryptionMethod" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:complexType name="Variables">
     <xs:sequence>
+      <xs:element minOccurs="0" name="Delay" type="xs:int" />
       <xs:element minOccurs="0" name="Encrypt" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="EncryptByte" nillable="true" type="xs:base64Binary" />
       <xs:element minOccurs="0" name="NumberMethodMsSQL" type="xs:int" />
       <xs:element minOccurs="0" name="NumberMethodWCF" type="xs:int" />
       <xs:element minOccurs="0" name="NumberMethodWinForms" type="xs:int" />
+      <xs:element minOccurs="0" name="Option" type="xs:int" />
+      <xs:element minOccurs="0" name="Repeat" type="xs:int" />
       <xs:element minOccurs="0" name="Size" type="xs:int" />
       <xs:element minOccurs="0" name="StartWinForms" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="StopWinforms" nillable="true" type="xs:string" />

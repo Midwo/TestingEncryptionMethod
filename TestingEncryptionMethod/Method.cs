@@ -15,14 +15,16 @@ namespace TestingEncryptionMethod
         public byte [] RsaEncryptByte(string content)
         {
             var publicKey =
-                "<RSAKeyValue><Modulus>wv2+A8oH4yVJ4ZBaeOqM0X1CUOgMPIcFkrbrTCDgsMEYCYO9asamOWlLUCJptp1xKZahtDn7iZa5MwqVFUm5MJKl3bMnyvkUSBUWz8qzvbYbpwy3KZlKxK+crMcUhm5G7SNsMkaB2mxe05fW1Q4kfhbflBM9qXicRLggcWL92PU=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue>";
-
+           "<RSAKeyValue><Modulus>rxTOhmM+OOk0Ew+uLHBCh0IpZN2Xq9vAzy8leFcDyYE7Nyx2KI/AY4iJPcBdBVphA4SS6aPcTgc1x7+jg2pDcICGFpjdOoAtX7OQJ8hEghSlXo9GIoJKqvZ8VIXOqOLIq7S0bVbS7/laQ8ez7TcNk/7d2QIksDObbIiS6jCjS+er3mWjwtCZzfHHvSZz7yZNmJd/fOaSvARHPC6F3Ei/2JiJ0ZW+uF/bXTMupy/xWJDL8ttehCH0N9gnsBLe31Rmhl7pbRhmY0paDIAoEoOkAUsTLgC5VD3/Ymg2UyVGvV6K+VWBobhXMajrz5zqmAjrl9PcR9DgApf4mu2DtkM5JQ==</Modulus><Exponent>AQAB</Exponent></RSAKeyValue>";
 
             var testData = Encoding.UTF8.GetBytes(content);
 
             using (var rsa = new RSACryptoServiceProvider(1024))
             {
 
+                string x = rsa.ToXmlString(true);
+                string x1 = rsa.ToXmlString(false);
+                string x2 = rsa.ToXmlString(true);
                 try
                 {
 
@@ -55,12 +57,13 @@ namespace TestingEncryptionMethod
 
         public byte [] RsaDectryptByte(byte [] RsaEncryptByte)
         {
-    
+
 
             var privateKey =
-              "<RSAKeyValue><Modulus>wv2+A8oH4yVJ4ZBaeOqM0X1CUOgMPIcFkrbrTCDgsMEYCYO9asamOWlLUCJptp1xKZahtDn7iZa5MwqVFUm5MJKl3bMnyvkUSBUWz8qzvbYbpwy3KZlKxK+crMcUhm5G7SNsMkaB2mxe05fW1Q4kfhbflBM9qXicRLggcWL92PU=</Modulus><Exponent>AQAB</Exponent><P>xTtjhnfGdoEvnOvL/2srpVOw9UqapDmlfA/AM688KnhuQndTTB4lal2DsaLsQ9rvJbjEPotqG2smT48SO0LKAw==</P><Q>/Rdtccp3VpWhIfXaVHZswcesDbF1qEm2ediVGI3JSZDkUYtid0uPpPE4HJeXJIuRFJORM3p+g26nPr3crN9bpw==</Q><DP>VgaeVWNevAeC5fXvJ3vuMJE9aO/eXW0LYf5YvfJb0sZuiS0UtumbNjaNn2hJlxsiHhjl98XFRSpKLn9f21s5Uw==</DP><DQ>cbr3WW0MF4KBuAsMo2vcD3A0pqqaHpeRQkvLJA+C5mYP03z5MHZqBErJVj/gkXGOLlrpouJmu5Ub3pve8GgmfQ==</DQ><InverseQ>YLFKqHn37A61BAtIjaiol5TJy0cBDWufrpgPsuZRRUzAZfMnkb9eZ+zS4KF67MT610IMQebeEYc4atDhizH6lQ==</InverseQ><D>sqv3tVkmqQi+DiZMAIhLyJnSbnhy3fOLM8jRCs0FlnEZKX7BzlmAbxMAo8kkvOS/kLAqNA79YjHuOcr0mLEZMsBJmVyYgydP9k3UIM5z+SPOzAjmnGQyRNAFZDN3zQN/92R58FHfij0gRevDhT0uPrQjaDwp7libTL3Sxbj2H/E=</D></RSAKeyValue>";
+            "<RSAKeyValue><Modulus>rxTOhmM+OOk0Ew+uLHBCh0IpZN2Xq9vAzy8leFcDyYE7Nyx2KI/AY4iJPcBdBVphA4SS6aPcTgc1x7+jg2pDcICGFpjdOoAtX7OQJ8hEghSlXo9GIoJKqvZ8VIXOqOLIq7S0bVbS7/laQ8ez7TcNk/7d2QIksDObbIiS6jCjS+er3mWjwtCZzfHHvSZz7yZNmJd/fOaSvARHPC6F3Ei/2JiJ0ZW+uF/bXTMupy/xWJDL8ttehCH0N9gnsBLe31Rmhl7pbRhmY0paDIAoEoOkAUsTLgC5VD3/Ymg2UyVGvV6K+VWBobhXMajrz5zqmAjrl9PcR9DgApf4mu2DtkM5JQ==</Modulus><Exponent>AQAB</Exponent><P>0DHEw8LMkmFIN7qslF2KiJcyeHWOR/UXgU9bIZHQXNXUaBxbuZuuZQMLrLfeepILwf3kfpXDbFdzkA7bGPqQ1tDkPJ4+4LekX7s/UZ3N2oqofKw/vEpaRBcMMa5tWoVhxelIGuFO1n+tzVGfve4nDoULmZMi2f67/5FPxEPir0c=</P><Q>10iO+adFF52b+e5TKgir2Hy2qB6ax4tG0MyHHUy+cFGRiKfSbQRANAecpdQyqIw+tesJx7fduW4zYbW31UOU3pLUND/bktuFOxuu4n5bZQScTTVTmkzxDlwG1/leMgAP0uiJNO9jBD4IHEQgJiIC7YaZG5t/UR9tvbB9G2LGQjM=</Q><DP>BpkdMEsTKqx0mneLEqSoSE3qZpDrMnKdDRcTv0ucu+R299m2Onqpmz/udcnZ/i50uvAt9qkOaXeYDP+7h94hCv3Rze4B9iM7zWDkz9RdesicMF9RIcmFdNT6KPTrOEwz3g7Xnyp20it3uaMVmfJbQIWM6ZAVMa12DdJwIbs5Cu8=</DP><DQ>mglEo8TXXuparB2mS7EgpCm319ruDFDPPp7ZHlHHAT6bzxelLHOaLKA1qUGHbanLRQcDXG9mqkL7aLJI8sMERazxQOFgDlgboAtSuqSGaGVAIM5DH2hmIkweaXH3v/bjW5kec03Fn0dzLiZgimhTh/iCnIpKMpU2RD9/hJTMHpk=</DQ><InverseQ>YbnBwGX7XBv0RLsA3Bk4hOh/HV1Bh9wAfKXBSAQ5knv83GsnegR6AVDjEAP39vvWToUOqrpiLygv5r6EfeZ3X+uGCaj01B/8WVtaRCv3UAgRZwObK9OSQRhrT/Ct4QteAHzJ2hIaHcFrmWV9ppeABK9/PSQ0t/yQidEw+BkI0V8=</InverseQ><D>nS1NtyHTU14wbMhP8f8aCrmf1biFmDihYJ6PwfhEIxuMYJzeus1Kx1Bk/PX7zHl1zKWxCmUbu0UHx/pIPgsg3hfTyOeU/BbkJR1b1gsZTbphN4HiUcqsY80CkxLJE578zgFdVSd0GRG/MkhPRC9/VhShb1dYPoMmDgqR8gKWJuYpnPjg1V0chsJIsHCL2pKhv/+WntS7wsnbRRKVTOUpdmDZPEp7Jb5P7zBQJ1zBgVlvyrV6XjvGmoeJQ5FJIjp7tYLDioN6/9PWNK6B2PEPaboxBZbR5JTsIbRSdMYJwnlKb6Vi36c2BRXtMqs1WLcQUMZoEFh49vXq+7ms74DuxQ==</D></RSAKeyValue>";
 
-         
+
+
 
             using (var rsa = new RSACryptoServiceProvider(1024))
             {
