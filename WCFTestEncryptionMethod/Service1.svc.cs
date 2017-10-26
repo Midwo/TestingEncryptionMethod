@@ -21,10 +21,10 @@ namespace WCFTestEncryptionMethod
        
 
             WSHttpBinding binding = new WSHttpBinding();
-            binding.OpenTimeout = new TimeSpan(0, 10, 0);
-            binding.CloseTimeout = new TimeSpan(0, 10, 0);
-            binding.SendTimeout = new TimeSpan(0, 10, 0);
-            binding.ReceiveTimeout = new TimeSpan(0, 10, 0);
+            binding.OpenTimeout = new TimeSpan(2, 0, 0);
+            binding.CloseTimeout = new TimeSpan(2, 0, 0);
+            binding.SendTimeout = new TimeSpan(2, 0, 0);
+            binding.ReceiveTimeout = new TimeSpan(2, 0, 0);
 
 
 

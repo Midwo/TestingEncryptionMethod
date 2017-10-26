@@ -103,7 +103,7 @@ namespace TestingEncryptionMethod
             int delay = Decimal.ToInt32(numericUpDown2.Value);
             byte[] byteEncrypt;
             RefWcf.Service1Client client = new RefWcf.Service1Client();
-            client.Endpoint.Binding.SendTimeout = new TimeSpan(1, 0, 0);
+            client.Endpoint.Binding.SendTimeout = new TimeSpan(2, 0, 0);
 
             RefWcf.Variables variables = new RefWcf.Variables();
             variables.Option = Int32.Parse(checkedListBox1.SelectedIndex.ToString());
@@ -315,7 +315,7 @@ namespace TestingEncryptionMethod
                                 request = returnString;
                             
                         }
-
+                        lStatusInfo.Text = request;
                     }
                     if (checkedListBox1.SelectedIndex == 1)
                     {
@@ -329,7 +329,8 @@ namespace TestingEncryptionMethod
                         variables.Size = cBinput.SelectedIndex;
                         stopWinForm = DateTime.Now.ToString("HH.mm.ss.ffffff");
                         variables.StopWinforms = stopWinForm;
-                        client.WindowsFormConnect(variables);
+                        request = client.WindowsFormConnect(variables);
+                        lStatusInfo.Text = request;
                     }
                     if (checkedListBox1.SelectedIndex == 2)
                     {
@@ -500,6 +501,7 @@ namespace TestingEncryptionMethod
                             request = returnString;
 
                         }
+                        lStatusInfo.Text = request;
                     }
                 }
                 else
@@ -596,6 +598,7 @@ namespace TestingEncryptionMethod
 
                             returnString = client.WindowsFormConnect(variables);
                             request = returnString;
+
                         }
 
 
@@ -735,7 +738,7 @@ namespace TestingEncryptionMethod
             cBAlgorithmWCF.SelectedIndex = -1;
             cBAlgorithmWinForms.SelectedIndex = -1;
             comboBox3.SelectedIndex = -1;
-
+            lStatusInfo.ResetText();
             checkedListBox1.ClearSelected();
             for (int i = 0; i < checkedListBox1.Items.Count; i++)
 
