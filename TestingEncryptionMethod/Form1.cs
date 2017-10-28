@@ -64,7 +64,7 @@ namespace TestingEncryptionMethod
         }
         private void button1_Click_1(object sender, EventArgs e)
         {
-
+            lStatusInfo.Text = "";
             #region info
             //                table info in lStatusInfo - combobox:  
             //                0 - String 20 char
